@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FDFF1D21CF856E70014E709 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D11CF856E70014E709 /* main.m */; };
+		2FDFF1D51CF856E70014E709 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D41CF856E70014E709 /* AppDelegate.m */; };
+		2FDFF1DB1CF856E70014E709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D91CF856E70014E709 /* Main.storyboard */; };
+		2FDFF1DD1CF856E70014E709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFF1DC1CF856E70014E709 /* Assets.xcassets */; };
+		2FDFF1E01CF856E70014E709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFF1DE1CF856E70014E709 /* LaunchScreen.storyboard */; };
+		2FDFF1EE1CF868830014E709 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1ED1CF868830014E709 /* WelcomeViewController.m */; };
+		2FDFF1F11CF86AAD0014E709 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */; };
+		2FDFF1F41CF86AD20014E709 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F31CF86AD20014E709 /* SignupViewController.m */; };
+		2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */; };
+		2FDFF2031CF87C080014E709 /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDFF2021CF87C080014E709 /* ScreenMeetSDK.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FDFF1CD1CF856E70014E709 /* ScreenMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FDFF1D11CF856E70014E709 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2FDFF1D31CF856E70014E709 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2FDFF1D41CF856E70014E709 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2FDFF1DA1CF856E70014E709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FDFF1DC1CF856E70014E709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FDFF1DF1CF856E70014E709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2FDFF1E11CF856E70014E709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FDFF1EC1CF868830014E709 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Classes/ViewControllers/Welcome/WelcomeViewController.h; sourceTree = "<group>"; };
+		2FDFF1ED1CF868830014E709 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Classes/ViewControllers/Welcome/WelcomeViewController.m; sourceTree = "<group>"; };
+		2FDFF1EF1CF86AAD0014E709 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/ViewControllers/Login/LoginViewController.h; sourceTree = "<group>"; };
+		2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Classes/ViewControllers/Login/LoginViewController.m; sourceTree = "<group>"; };
+		2FDFF1F21CF86AD10014E709 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = Classes/ViewControllers/Signup/SignupViewController.h; sourceTree = "<group>"; };
+		2FDFF1F31CF86AD20014E709 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = Classes/ViewControllers/Signup/SignupViewController.m; sourceTree = "<group>"; };
+		2FDFF1FE1CF872FC0014E709 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Classes/ViewControllers/Base/BaseViewController.h; sourceTree = "<group>"; };
+		2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Classes/ViewControllers/Base/BaseViewController.m; sourceTree = "<group>"; };
+		2FDFF2021CF87C080014E709 /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenMeetSDK.framework; path = Vendor/ScreenMeetSDK.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FDFF1CA1CF856E70014E709 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FDFF2031CF87C080014E709 /* ScreenMeetSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FDFF1C41CF856E70014E709 = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1CF1CF856E70014E709 /* ScreenMeet */,
+				2FDFF1CE1CF856E70014E709 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FDFF1CE1CF856E70014E709 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1CD1CF856E70014E709 /* ScreenMeet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FDFF1CF1CF856E70014E709 /* ScreenMeet */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF2011CF87BF90014E709 /* Vendor */,
+				2FDFF1E71CF867E60014E709 /* Classes */,
+				2FDFF1D31CF856E70014E709 /* AppDelegate.h */,
+				2FDFF1D41CF856E70014E709 /* AppDelegate.m */,
+				2FDFF1D91CF856E70014E709 /* Main.storyboard */,
+				2FDFF1DC1CF856E70014E709 /* Assets.xcassets */,
+				2FDFF1DE1CF856E70014E709 /* LaunchScreen.storyboard */,
+				2FDFF1E11CF856E70014E709 /* Info.plist */,
+				2FDFF1D01CF856E70014E709 /* Supporting Files */,
+			);
+			path = ScreenMeet;
+			sourceTree = "<group>";
+		};
+		2FDFF1D01CF856E70014E709 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1D11CF856E70014E709 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FDFF1E71CF867E60014E709 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1E81CF867F10014E709 /* ViewControllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		2FDFF1E81CF867F10014E709 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1FD1CF872F20014E709 /* Base */,
+				2FDFF1EB1CF868520014E709 /* Signup */,
+				2FDFF1EA1CF8683F0014E709 /* Login */,
+				2FDFF1E91CF868380014E709 /* Welcome */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2FDFF1E91CF868380014E709 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1EC1CF868830014E709 /* WelcomeViewController.h */,
+				2FDFF1ED1CF868830014E709 /* WelcomeViewController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		2FDFF1EA1CF8683F0014E709 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1EF1CF86AAD0014E709 /* LoginViewController.h */,
+				2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		2FDFF1EB1CF868520014E709 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1F21CF86AD10014E709 /* SignupViewController.h */,
+				2FDFF1F31CF86AD20014E709 /* SignupViewController.m */,
+			);
+			name = Signup;
+			sourceTree = "<group>";
+		};
+		2FDFF1FD1CF872F20014E709 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF1FE1CF872FC0014E709 /* BaseViewController.h */,
+				2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		2FDFF2011CF87BF90014E709 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				2FDFF2021CF87C080014E709 /* ScreenMeetSDK.framework */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FDFF1CC1CF856E70014E709 /* ScreenMeet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FDFF1E41CF856E70014E709 /* Build configuration list for PBXNativeTarget "ScreenMeet" */;
+			buildPhases = (
+				2FDFF1C91CF856E70014E709 /* Sources */,
+				2FDFF1CA1CF856E70014E709 /* Frameworks */,
+				2FDFF1CB1CF856E70014E709 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenMeet;
+			productName = ScreenMeet;
+			productReference = 2FDFF1CD1CF856E70014E709 /* ScreenMeet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FDFF1C51CF856E70014E709 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = RostyslavStepanyak;
+				TargetAttributes = {
+					2FDFF1CC1CF856E70014E709 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 2FDFF1C81CF856E70014E709 /* Build configuration list for PBXProject "ScreenMeet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FDFF1C41CF856E70014E709;
+			productRefGroup = 2FDFF1CE1CF856E70014E709 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FDFF1CC1CF856E70014E709 /* ScreenMeet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FDFF1CB1CF856E70014E709 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FDFF1E01CF856E70014E709 /* LaunchScreen.storyboard in Resources */,
+				2FDFF1DD1CF856E70014E709 /* Assets.xcassets in Resources */,
+				2FDFF1DB1CF856E70014E709 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FDFF1C91CF856E70014E709 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FDFF1F11CF86AAD0014E709 /* LoginViewController.m in Sources */,
+				2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */,
+				2FDFF1EE1CF868830014E709 /* WelcomeViewController.m in Sources */,
+				2FDFF1D51CF856E70014E709 /* AppDelegate.m in Sources */,
+				2FDFF1D21CF856E70014E709 /* main.m in Sources */,
+				2FDFF1F41CF86AD20014E709 /* SignupViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2FDFF1D91CF856E70014E709 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FDFF1DA1CF856E70014E709 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2FDFF1DE1CF856E70014E709 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FDFF1DF1CF856E70014E709 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2FDFF1E21CF856E70014E709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FDFF1E31CF856E70014E709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FDFF1E51CF856E70014E709 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScreenMeet/Vendor",
+				);
+				INFOPLIST_FILE = ScreenMeet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.projector.screenmeetsampe.ScreenMeet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2FDFF1E61CF856E70014E709 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScreenMeet/Vendor",
+				);
+				INFOPLIST_FILE = ScreenMeet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.projector.screenmeetsampe.ScreenMeet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FDFF1C81CF856E70014E709 /* Build configuration list for PBXProject "ScreenMeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FDFF1E21CF856E70014E709 /* Debug */,
+				2FDFF1E31CF856E70014E709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FDFF1E41CF856E70014E709 /* Build configuration list for PBXNativeTarget "ScreenMeet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FDFF1E51CF856E70014E709 /* Debug */,
+				2FDFF1E61CF856E70014E709 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FDFF1C51CF856E70014E709 /* Project object */;
+}
