@@ -8,8 +8,10 @@
 
 #import "LoginViewController.h"
 #import "ScreenMeetSDK/ScreenMeetSDK-Swift.h"
+#import "MTProgressHUD.h"
 
 @interface LoginViewController ()
+@property (nonatomic, strong) ScreenMeet *screenEngine;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -33,9 +35,7 @@
     self.facebookButton.layer.cornerRadius = 7.f;
     self.loginButton.layer.cornerRadius = 7.f;
     
-    ScreenMeet *engine = [[ScreenMeet alloc] init];
-    [engine login]
-
+    self.screenEngine = [[ScreenMeet alloc] initWithApiKey:@"sfsdfsdf" environment:EnvironmentTypeSANDBOX];
 }
 
 - (IBAction)facebookLoginPressed:(id)sender {
@@ -43,7 +43,11 @@
 }
 
 - (IBAction)loginUpPressed:(id)sender {
-    
+    [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
+    [self.screenEngine authenticate:@"ivanatprojector@gmail.com" password:@"qqqqqq" callback:^(enum CallStatus status) {
+        NSLog(@"Status: %ld", (long)status);
+        [[MTProgressHUD sharedHUD] dismiss];
+    }];
 }
 
 - (void)popBack {

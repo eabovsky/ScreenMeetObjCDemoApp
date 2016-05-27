@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/ScreenMeet.swift</key>
 		<data>
-		LlvZzMDaqLR2N71IX+1+treaT2M=
+		PaqDEZt+aM1UnJN6DQReC9UxX68=
 		</data>
 		<key>Headers/ScreenMeetSDK-Swift.h</key>
 		<data>
-		HK/u8mtuxgBSC7lp2/GtS6RVeBU=
+		FV5vpxrusKGm66julf1nDPF0GGY=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		r3G2OmhGagHmffXuiG8uVa4rxwk=
+		Eyg3FurZy8cpk3cT0LwNR0tZrHE=
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		oad7J5orz3I2d9gHdz4KVJ5LmHQ=
+		vfdULou2u3IOpySIsaE/nuy6tiQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,22 +43,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			LlvZzMDaqLR2N71IX+1+treaT2M=
+			PaqDEZt+aM1UnJN6DQReC9UxX68=
 			</data>
 			<key>hash2</key>
 			<data>
-			Bc3QrZtxkp79I/XDttu6rLDPqRn2V10B/QXtrnvsdl4=
+			x4wiQ3DuOnJjwvfeZ+isScdYPuPN9tli5mXpiw7skeU=
 			</data>
 		</dict>
 		<key>Headers/ScreenMeetSDK-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			HK/u8mtuxgBSC7lp2/GtS6RVeBU=
+			FV5vpxrusKGm66julf1nDPF0GGY=
 			</data>
 			<key>hash2</key>
 			<data>
-			wYaAW4aZ+s6Qvmbq6KvsuEiot1D/P2MBnExtFBlmqm0=
+			G51yftbxEvASBzPCifXLpVxDzFI45C9QX0RssKN3Ikk=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftdoc</key>
@@ -76,11 +76,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			r3G2OmhGagHmffXuiG8uVa4rxwk=
+			Eyg3FurZy8cpk3cT0LwNR0tZrHE=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZZA6Vp9CUk9GwHy7WQQU2aIJiZnvP8hh/SyRtFciKMo=
+			etKcEcFgTwVzMjZfpPFcxnBdzwnlKS4XUoEkL7IoepQ=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftdoc</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oad7J5orz3I2d9gHdz4KVJ5LmHQ=
+			vfdULou2u3IOpySIsaE/nuy6tiQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			15X12OXZo0R4FM9QCFNOg5cNRqbIka0RzEg1eK9GKxs=
+			VuCfI5U9SSZZyHA8xHHxZq0Qm1mNn7ImaJxIajyfN/A=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

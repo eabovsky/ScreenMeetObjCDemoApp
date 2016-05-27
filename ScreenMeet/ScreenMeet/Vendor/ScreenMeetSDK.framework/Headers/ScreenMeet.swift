@@ -55,6 +55,9 @@ public class ScreenMeet: NSObject {
     }
     
     public func logoutUser() {
+        if (getStreamState() != .STOPPED) {
+            stopStream()
+        }
         BackendClient.logout()
     }
     
@@ -106,7 +109,7 @@ public class ScreenMeet: NSObject {
         if (getStreamState() == .ACTIVE) {
             socketService.isPaused = true
         } else {
-            //TODO print warning
+            print("Warning: Stream is \(getStreamState()) and cannot be paused")
         }
     }
     
@@ -114,7 +117,7 @@ public class ScreenMeet: NSObject {
         if (getStreamState() == .PAUSED) {
             socketService.isPaused = false
         } else {
-            //TODO print warning
+            print("Warning: Stream is \(getStreamState()) and cannot be resumed")
         }
     }
 
@@ -122,7 +125,7 @@ public class ScreenMeet: NSObject {
         if (getStreamState() != .STOPPED) {
             socketService.stopScreenSharing()
         } else {
-            //TODO print warning
+            print("Warning: Stream is aready stopped (do not need to stop it again)")
         }
     }
 
@@ -211,35 +214,35 @@ public class ScreenMeetViewer: NSObject {
     }
 }
 
-public enum EnvironmentType: String {
-    case SANDBOX = "https://qa-api-v2.screenmeet.com/api/v2/"
-    case PRODUCTION = "https://api-v2.screenmeet.com/api/v2/"
+@objc public enum EnvironmentType: Int {
+    case SANDBOX
+    case PRODUCTION
 }
 
-public enum StreamStateType: String {
-    case ACTIVE = "active"
-    case PAUSED = "paused"
-    case STOPPED = "stopped"
+@objc public enum StreamStateType: Int {
+    case ACTIVE
+    case PAUSED
+    case STOPPED
 }
 
 
-public enum DisconnectedReason: String {
-    case SERVER_ERROR = "Unexpected server error"
-    case NETWORK_ERROR = "Network connection lost"
-    case STARTED_ON_OTHER_DEVICE = "Stream started from another device"
+@objc public enum DisconnectedReason: Int {
+    case SERVER_ERROR
+    case NETWORK_ERROR
+    case STARTED_ON_OTHER_DEVICE
 }
 
-public enum CallStatus: String {
-    case SUCCESS = "success"
-    case ALREADY_HAS_ACCOUNT = "Already has account"
-    case INVALID_EMAIL = "Invalid e-mail address"
-    case DUPLICATE_EMAIL = "Duplicate e-mail address"
-    case INVALID_ROOM_NAME = "Invalid room name (eg, illegal characters)"
-    case DUPLICATE_ROOM_NAME = "Duplicate room name (name is already taken)"
-    case INVALID_API_KEY = "Invalid API key"
-    case AUTH_ERROR = "Authentication error (invalid user auth)"
-    case NETWORK_ERROR = "Unexpected server communication error (network issues, API server issue, etc)"
-    case INVALID_SUBSCRIPTION = "Invalid subscription (user needs to purchase ScreenMeet subscription)"
+@objc public enum CallStatus: Int {
+    case SUCCESS
+    case ALREADY_HAS_ACCOUNT
+    case INVALID_EMAIL
+    case DUPLICATE_EMAIL
+    case INVALID_ROOM_NAME
+    case DUPLICATE_ROOM_NAME
+    case INVALID_API_KEY
+    case AUTH_ERROR
+    case NETWORK_ERROR
+    case INVALID_SUBSCRIPTION
 }
 
 

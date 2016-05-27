@@ -102,6 +102,8 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 @class ScreenMeet;
 @class NSDictionary;
+enum CallStatus : NSInteger;
+@class StreamConfig;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 @interface BackendClient : NSObject
@@ -121,8 +123,17 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 + (void)setEndpointInfo:(NSDictionary * _Null_unspecified)value;
 + (NSDictionary * _Null_unspecified)webConfig;
 + (void)setWebConfig:(NSDictionary * _Null_unspecified)value;
++ (void)loginUser:(NSString * _Null_unspecified)login password:(NSString * _Null_unspecified)password bearer:(NSString * _Null_unspecified)bearer callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)logout;
++ (void)loginUserWithGoogle:(NSString * _Nonnull)googleToken callback:(void (^ _Nonnull)(NSString * _Null_unspecified email, enum CallStatus status))callback;
++ (void)getInviteText:(StreamConfig * _Nonnull)conf callback:(void (^ _Nonnull)(NSString * _Null_unspecified inviteText, enum CallStatus status))callback;
++ (void)updateProfile:(NSString * _Nonnull)email name:(NSString * _Nonnull)name password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)setRoomName:(NSString * _Nonnull)roomName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)discoverEndpoint:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)getWebsiteConfig;
++ (void)registerUser:(NSString * _Nonnull)name email:(NSString * _Nonnull)email password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)sendPostRequest:(NSString * _Nonnull)url params:(NSDictionary<NSString *, NSObject *> * _Nonnull)params callback:(void (^ _Nonnull)(NSDictionary * _Null_unspecified json, enum CallStatus status))callback;
++ (void)sendGetRequest:(NSString * _Nonnull)url callback:(void (^ _Nonnull)(NSDictionary * _Null_unspecified json, enum CallStatus status))callback;
 + (NSString * _Nonnull)appVersion;
 + (NSString * _Nonnull)udid;
 + (NSString * _Nonnull)deviceName;
@@ -131,18 +142,48 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+typedef SWIFT_ENUM(NSInteger, CallStatus) {
+  CallStatusSUCCESS = 0,
+  CallStatusALREADY_HAS_ACCOUNT = 1,
+  CallStatusINVALID_EMAIL = 2,
+  CallStatusDUPLICATE_EMAIL = 3,
+  CallStatusINVALID_ROOM_NAME = 4,
+  CallStatusDUPLICATE_ROOM_NAME = 5,
+  CallStatusINVALID_API_KEY = 6,
+  CallStatusAUTH_ERROR = 7,
+  CallStatusNETWORK_ERROR = 8,
+  CallStatusINVALID_SUBSCRIPTION = 9,
+};
+
+typedef SWIFT_ENUM(NSInteger, DisconnectedReason) {
+  DisconnectedReasonSERVER_ERROR = 0,
+  DisconnectedReasonNETWORK_ERROR = 1,
+  DisconnectedReasonSTARTED_ON_OTHER_DEVICE = 2,
+};
+
+typedef SWIFT_ENUM(NSInteger, EnvironmentType) {
+  EnvironmentTypeSANDBOX = 0,
+  EnvironmentTypePRODUCTION = 1,
+};
+
 
 @interface NSDictionary (SWIFT_EXTENSION(ScreenMeetSDK))
 @end
 
 @class SocketService;
 @class UIView;
+enum StreamStateType : NSInteger;
 @class ScreenMeetViewer;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 @interface ScreenMeet : NSObject
 @property (nonatomic, readonly, strong) SocketService * _Nonnull socketService;
+- (nonnull instancetype)initWithApiKey:(NSString * _Nonnull)apiKey environment:(enum EnvironmentType)environment OBJC_DESIGNATED_INITIALIZER;
+- (void)authenticate:(NSString * _Nonnull)username password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)authenticate:(NSString * _Nonnull)bearerToken callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (NSString * _Null_unspecified)getBearerToken;
+- (void)createUser:(NSString * _Nonnull)email username:(NSString * _Nonnull)username password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)updateUser:(NSString * _Null_unspecified)email username:(NSString * _Null_unspecified)username password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (BOOL)isUserLoggedIn;
 - (void)logoutUser;
 - (NSString * _Nonnull)getResetPasswordURL:(NSString * _Nonnull)email;
@@ -150,17 +191,22 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 - (NSString * _Null_unspecified)getUserId;
 - (NSString * _Null_unspecified)getUserName;
 - (NSString * _Null_unspecified)getUserEmail;
+- (void)setRoomName:(NSString * _Nonnull)roomName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)getRoomUrl:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(NSString * _Null_unspecified roomUrl, enum CallStatus status))callback;
 - (BOOL)isSubscriptionValid;
+- (void)startStream:(UIView * _Nonnull)source config:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)switchStreamSource:(UIView * _Nonnull)newSource;
 - (void)pauseStream;
 - (void)resumeStream;
 - (void)stopStream;
+- (enum StreamStateType)getStreamState;
 - (NSInteger)getViewerCount;
 - (NSArray<ScreenMeetViewer *> * _Nonnull)getViewers;
 - (void)kickViewer:(NSString * _Nonnull)id;
 - (void)setQuality:(NSInteger)quality;
 - (void)onViewerJoined:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
 - (void)onViewerLeft:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
+- (void)onDisconnected:(void (^ _Null_unspecified)(enum DisconnectedReason reason))callback;
 @end
 
 
@@ -379,7 +425,6 @@ typedef SWIFT_ENUM(NSInteger, SocketIOClientStatus) {
 };
 
 @class NSTimer;
-@class StreamConfig;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @interface SocketService : NSObject
@@ -413,6 +458,12 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK12StreamConfig")
 @property (nonatomic, readonly) BOOL askForName;
 - (nonnull instancetype)initWithPassword:(NSString * _Null_unspecified)password askForName:(BOOL)askForName OBJC_DESIGNATED_INITIALIZER;
 @end
+
+typedef SWIFT_ENUM(NSInteger, StreamStateType) {
+  StreamStateTypeACTIVE = 0,
+  StreamStateTypePAUSED = 1,
+  StreamStateTypeSTOPPED = 2,
+};
 
 
 @interface UIDevice (SWIFT_EXTENSION(ScreenMeetSDK))
