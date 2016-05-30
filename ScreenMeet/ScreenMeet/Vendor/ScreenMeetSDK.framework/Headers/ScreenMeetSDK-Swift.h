@@ -174,6 +174,7 @@ typedef SWIFT_ENUM(NSInteger, EnvironmentType) {
 @class UIView;
 enum StreamStateType : NSInteger;
 @class ScreenMeetViewer;
+@class UIImage;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 @interface ScreenMeet : NSObject
@@ -207,6 +208,7 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 - (void)onViewerJoined:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
 - (void)onViewerLeft:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
 - (void)onDisconnected:(void (^ _Null_unspecified)(enum DisconnectedReason reason))callback;
+- (void)setImageProcessor:(UIImage * _Nonnull (^ _Null_unspecified)(UIImage * _Nonnull sourceImage))processor;
 @end
 
 

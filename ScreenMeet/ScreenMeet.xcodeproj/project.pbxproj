@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FD245F81CFC495C0081A4ED /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD245F71CFC495C0081A4ED /* MainViewController.m */; };
+		2FD245FA1CFC7A420081A4ED /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; };
+		2FD245FB1CFC7A740081A4ED /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; };
+		2FD245FC1CFC7A740081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2FDFF1D21CF856E70014E709 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D11CF856E70014E709 /* main.m */; };
 		2FDFF1D51CF856E70014E709 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D41CF856E70014E709 /* AppDelegate.m */; };
 		2FDFF1DB1CF856E70014E709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D91CF856E70014E709 /* Main.storyboard */; };
@@ -18,8 +22,6 @@
 		2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */; };
 		2FDFF2091CF886890014E709 /* MTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF2081CF886890014E709 /* MTProgressHUD.m */; };
 		2FDFF20C1CF887800014E709 /* IMGActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF20B1CF887800014E709 /* IMGActivityIndicator.m */; };
-		2FDFF2161CF88D5A0014E709 /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDFF20D1CF88A800014E709 /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2FDFF2191CF88EAB0014E709 /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FDFF20D1CF88A800014E709 /* ScreenMeetSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2FDFF2161CF88D5A0014E709 /* ScreenMeetSDK.framework in Embed Frameworks */,
+				2FD245FC1CFC7A740081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +39,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2FD245F61CFC495C0081A4ED /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/ViewControllers/Main/MainViewController.h; sourceTree = "<group>"; };
+		2FD245F71CFC495C0081A4ED /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/ViewControllers/Main/MainViewController.m; sourceTree = "<group>"; };
+		2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenMeetSDK.framework; path = Vendor/ScreenMeetSDK.framework; sourceTree = "<group>"; };
 		2FDFF1CD1CF856E70014E709 /* ScreenMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDFF1D11CF856E70014E709 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2FDFF1D31CF856E70014E709 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,7 +62,6 @@
 		2FDFF2081CF886890014E709 /* MTProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTProgressHUD.m; path = Vendor/ProgressHUD/MTProgressHUD.m; sourceTree = "<group>"; };
 		2FDFF20A1CF887800014E709 /* IMGActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMGActivityIndicator.h; path = Vendor/ProgressHUD/IMGActivityIndicator.h; sourceTree = "<group>"; };
 		2FDFF20B1CF887800014E709 /* IMGActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMGActivityIndicator.m; path = Vendor/ProgressHUD/IMGActivityIndicator.m; sourceTree = "<group>"; };
-		2FDFF20D1CF88A800014E709 /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenMeetSDK.framework; path = Vendor/ScreenMeetSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +69,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FDFF2191CF88EAB0014E709 /* ScreenMeetSDK.framework in Frameworks */,
+				2FD245FB1CFC7A740081A4ED /* ScreenMeetSDK.framework in Frameworks */,
+				2FD245FA1CFC7A420081A4ED /* ScreenMeetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FD245F51CFC491B0081A4ED /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2FD245F61CFC495C0081A4ED /* MainViewController.h */,
+				2FD245F71CFC495C0081A4ED /* MainViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		2FDFF1C41CF856E70014E709 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +137,7 @@
 		2FDFF1E81CF867F10014E709 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FD245F51CFC491B0081A4ED /* Main */,
 				2FDFF1FD1CF872F20014E709 /* Base */,
 				2FDFF1EB1CF868520014E709 /* Signup */,
 				2FDFF1EA1CF8683F0014E709 /* Login */,
@@ -170,7 +185,7 @@
 		2FDFF2011CF87BF90014E709 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				2FDFF20D1CF88A800014E709 /* ScreenMeetSDK.framework */,
+				2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */,
 				2FDFF2061CF8867F0014E709 /* ProgressHUD */,
 			);
 			name = Vendor;
@@ -279,6 +294,7 @@
 				2FDFF1F11CF86AAD0014E709 /* LoginViewController.m in Sources */,
 				2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */,
 				2FDFF2091CF886890014E709 /* MTProgressHUD.m in Sources */,
+				2FD245F81CFC495C0081A4ED /* MainViewController.m in Sources */,
 				2FDFF1EE1CF868830014E709 /* WelcomeViewController.m in Sources */,
 				2FDFF1D51CF856E70014E709 /* AppDelegate.m in Sources */,
 				2FDFF1D21CF856E70014E709 /* main.m in Sources */,
@@ -449,6 +465,7 @@
 				2FDFF1E61CF856E70014E709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

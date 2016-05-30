@@ -182,6 +182,12 @@ public class ScreenMeet: NSObject {
     public func onDisconnected(callback: ((reason: DisconnectedReason) -> Void)!) {
         disconnectedHandler = callback
     }
+
+    var imageProc: ((sourceImage: UIImage) -> UIImage)! = nil
+    
+    public func setImageProcessor(processor: ((sourceImage: UIImage) -> UIImage)!) {
+        imageProc = processor
+    }
 }
 
 public class StreamConfig: NSObject {
