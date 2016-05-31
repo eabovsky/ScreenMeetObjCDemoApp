@@ -13,7 +13,23 @@ public class ScreenMeet: NSObject {
 
     let apiKey: String
     let environment: EnvironmentType
-
+    
+    private static var instance: ScreenMeet! = nil
+    
+    public static func initSharedInstance(apiKey: String, environment: EnvironmentType = .SANDBOX) {
+        if (instance != nil) {
+            instance.logoutUser()
+        }
+        instance = ScreenMeet(apiKey: apiKey, environment: environment)
+    }
+    
+    public static func sharedInstance() -> ScreenMeet! {
+        if (instance == nil) {
+            print("ScreenMeet sharedInstance is not initialized. Use ScreenMeet.initSharedInstance method to init sharedInstance")
+        }
+        return instance
+    }
+    
     public let socketService = SocketService()
 
     public init(apiKey: String, environment: EnvironmentType = .SANDBOX) {
@@ -28,11 +44,19 @@ public class ScreenMeet: NSObject {
     
     
     public func authenticate(username: String, password: String, callback: (status: CallStatus) -> Void) {
-        BackendClient.loginUser(username, password: password, bearer: nil, callback: callback)
+        BackendClient.loginUser(username, password: password, bearer: nil, callback: {status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(status: status)
+            }
+        })
     }
     
     public func authenticate(bearerToken: String, callback: (status: CallStatus) -> Void) {
-        BackendClient.loginUser(nil, password: nil, bearer: bearerToken, callback: callback)
+        BackendClient.loginUser(nil, password: nil, bearer: bearerToken, callback: {status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(status: status)
+            }
+        })
     }
     
     public func getBearerToken() -> String! {
@@ -43,11 +67,19 @@ public class ScreenMeet: NSObject {
     }
     
     public func createUser(email: String, username: String, password: String, callback: (status: CallStatus) -> Void) {
-        BackendClient.registerUser(username, email: email, password: password, callback: callback)
+        BackendClient.registerUser(username, email: email, password: password, callback: {status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(status: status)
+            }
+        })
     }
     
     public func updateUser(email: String! = nil, username: String! = nil, password: String! = nil, callback: (status: CallStatus) -> Void) {
-        BackendClient.updateProfile(email, name: username, password: password, callback: callback)
+        BackendClient.updateProfile(email, name: username, password: password, callback: {status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(status: status)
+            }
+        })
     }
     
     public func isUserLoggedIn() -> Bool {
@@ -84,11 +116,19 @@ public class ScreenMeet: NSObject {
     }
     
     public func setRoomName(roomName: String, callback: (status: CallStatus) -> Void) {
-        BackendClient.setRoomName(roomName, callback: callback)
+        BackendClient.setRoomName(roomName, callback: {status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(status: status)
+            }
+        })
     }
 
     public func getRoomUrl(config: StreamConfig = StreamConfig(), callback: (roomUrl: String!, status: CallStatus) -> Void) {
-        BackendClient.getInviteText(config, callback: {link, status in callback(roomUrl: link, status: status)})
+        BackendClient.getInviteText(config, callback: {link, status in
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(roomUrl: link, status: status)
+            }
+        })
     }
     
     public func isSubscriptionValid() -> Bool {
@@ -99,6 +139,7 @@ public class ScreenMeet: NSObject {
     public func startStream(source: UIView, config: StreamConfig = StreamConfig(), callback: (status: CallStatus) -> Void) {
         socketService.startScreenSharing(config)
         socketService.screenshoter.setCurrentView(source)
+        
     }
 
     public func switchStreamSource(newSource: UIView) {

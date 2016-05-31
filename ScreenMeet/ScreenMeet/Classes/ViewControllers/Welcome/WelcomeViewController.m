@@ -9,7 +9,7 @@
 #import "WelcomeViewController.h"
 #import "SignupViewController.h"
 #import "LoginViewController.h"
-
+#import <ScreenMeetSDK/ScreenMeetSDK-Swift.h>
 
 @interface WelcomeViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
@@ -24,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [ScreenMeet initSharedInstance:@"Yo" environment:EnvironmentTypeSANDBOX];
     
     self.loginButton.layer.borderWidth     = 2.0f;
     self.loginButton.layer.cornerRadius    = 7.f;

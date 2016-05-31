@@ -178,6 +178,8 @@ enum StreamStateType : NSInteger;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 @interface ScreenMeet : NSObject
++ (void)initSharedInstance:(NSString * _Nonnull)apiKey environment:(enum EnvironmentType)environment;
++ (ScreenMeet * _Null_unspecified)sharedInstance;
 @property (nonatomic, readonly, strong) SocketService * _Nonnull socketService;
 - (nonnull instancetype)initWithApiKey:(NSString * _Nonnull)apiKey environment:(enum EnvironmentType)environment OBJC_DESIGNATED_INITIALIZER;
 - (void)authenticate:(NSString * _Nonnull)username password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;

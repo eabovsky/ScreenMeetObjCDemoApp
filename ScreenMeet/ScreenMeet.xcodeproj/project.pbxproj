@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2FD245F81CFC495C0081A4ED /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD245F71CFC495C0081A4ED /* MainViewController.m */; };
-		2FD245FA1CFC7A420081A4ED /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; };
-		2FD245FB1CFC7A740081A4ED /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; };
-		2FD245FC1CFC7A740081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2FD246111CFDCD6D0081A4ED /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD2460F1CFDCD620081A4ED /* ScreenMeetSDK.framework */; };
+		2FD246121CFDCD6D0081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD2460F1CFDCD620081A4ED /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2FDFF1D21CF856E70014E709 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D11CF856E70014E709 /* main.m */; };
 		2FDFF1D51CF856E70014E709 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D41CF856E70014E709 /* AppDelegate.m */; };
 		2FDFF1DB1CF856E70014E709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDFF1D91CF856E70014E709 /* Main.storyboard */; };
@@ -31,7 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2FD245FC1CFC7A740081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */,
+				2FD246121CFDCD6D0081A4ED /* ScreenMeetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,7 +40,7 @@
 /* Begin PBXFileReference section */
 		2FD245F61CFC495C0081A4ED /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/ViewControllers/Main/MainViewController.h; sourceTree = "<group>"; };
 		2FD245F71CFC495C0081A4ED /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/ViewControllers/Main/MainViewController.m; sourceTree = "<group>"; };
-		2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenMeetSDK.framework; path = Vendor/ScreenMeetSDK.framework; sourceTree = "<group>"; };
+		2FD2460F1CFDCD620081A4ED /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenMeetSDK.framework; path = Vendor/ScreenMeetSDK.framework; sourceTree = "<group>"; };
 		2FDFF1CD1CF856E70014E709 /* ScreenMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FDFF1D11CF856E70014E709 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2FDFF1D31CF856E70014E709 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -69,8 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD245FB1CFC7A740081A4ED /* ScreenMeetSDK.framework in Frameworks */,
-				2FD245FA1CFC7A420081A4ED /* ScreenMeetSDK.framework in Frameworks */,
+				2FD246111CFDCD6D0081A4ED /* ScreenMeetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +183,7 @@
 		2FDFF2011CF87BF90014E709 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				2FD245F91CFC7A420081A4ED /* ScreenMeetSDK.framework */,
+				2FD2460F1CFDCD620081A4ED /* ScreenMeetSDK.framework */,
 				2FDFF2061CF8867F0014E709 /* ProgressHUD */,
 			);
 			name = Vendor;
