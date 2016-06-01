@@ -55,18 +55,9 @@
     [[ScreenMeet sharedInstance] authenticate:self.emailTextField.text password:self.passwordTextField.text callback:^(enum CallStatus status) {
         NSLog(@"Status: %ld", (long)status);
         
-        
-        if([NSThread isMainThread]) {
-            NSLog(@"We're in main thread");
-        }
-        else {
-            NSLog(@"We're in background thread");
-        }
-        
-        
         [[MTProgressHUD sharedHUD] dismiss];
         
-        if(status == 0) {
+        if(status == CallStatusSUCCESS) {
             [self goToMainScreen];
         }
         else {
@@ -93,6 +84,5 @@
 - (void)popBack {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end

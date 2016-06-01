@@ -426,7 +426,7 @@ Incredibly Simple to Use</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlA-Mc-ahY" customClass="MDButton">
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlA-Mc-ahY">
                                 <rect key="frame" x="34" y="331" width="252" height="50"/>
                                 <color key="backgroundColor" red="0.074509803920000006" green="0.55294117649999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -444,6 +444,9 @@ Incredibly Simple to Use</string>
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signup:" destination="fhV-uw-yQe" eventType="touchUpInside" id="eAI-91-QZW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -466,6 +469,11 @@ Incredibly Simple to Use</string>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="wHF-qH-MCs" id="XG1-GA-Mxi"/>
+                        <outlet property="nameTextField" destination="EXR-VM-bnh" id="Hmw-Tt-LDl"/>
+                        <outlet property="passwordTextField" destination="hm8-zj-w91" id="tK9-zq-O3O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwG-PE-rcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
