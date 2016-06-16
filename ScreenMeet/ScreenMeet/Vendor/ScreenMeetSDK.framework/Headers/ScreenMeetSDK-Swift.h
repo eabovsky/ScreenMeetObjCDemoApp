@@ -126,7 +126,7 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 + (void)loginUser:(NSString * _Null_unspecified)login password:(NSString * _Null_unspecified)password bearer:(NSString * _Null_unspecified)bearer callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)logout;
 + (void)loginUserWithGoogle:(NSString * _Nonnull)googleToken callback:(void (^ _Nonnull)(NSString * _Null_unspecified email, enum CallStatus status))callback;
-+ (void)getInviteText:(StreamConfig * _Nonnull)conf callback:(void (^ _Nonnull)(NSString * _Null_unspecified inviteText, enum CallStatus status))callback;
++ (void)getInviteText:(StreamConfig * _Nonnull)conf callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)updateProfile:(NSString * _Nonnull)email name:(NSString * _Nonnull)name password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)setRoomName:(NSString * _Nonnull)roomName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)discoverEndpoint:(void (^ _Nonnull)(enum CallStatus status))callback;
@@ -142,27 +142,69 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+
+/// Background operation status
+///
+/// <ul><li>SUCCESS: Operation finished with success</li><li>ALREADY_HAS_ACCOUNT: User already has account</li><li>INVALID_EMAIL: Invalid e-mail address</li><li>DUPLICATE_EMAIL: Duplicate e-mail address</li><li>INVALID_ROOM_NAME: Invalid room name (eg, illegal characters)</li><li>DUPLICATE_ROOM_NAME: Duplicate room name (name is already taken)</li><li>INVALID_API_KEY: Invalid API key</li><li>AUTH_ERROR: Authentication error (invalid user auth)</li><li>NETWORK_ERROR: Unexpected server communication error (network issues, API server issue, etc)</li><li>INVALID_SUBSCRIPTION: Invalid subscription (user needs to purchase ScreenMeet subscription)</li></ul>
 typedef SWIFT_ENUM(NSInteger, CallStatus) {
+
+/// Operation finished with success
   CallStatusSUCCESS = 0,
+
+/// User already has account
   CallStatusALREADY_HAS_ACCOUNT = 1,
+
+/// Invalid e-mail address
   CallStatusINVALID_EMAIL = 2,
+
+/// Duplicate e-mail address
   CallStatusDUPLICATE_EMAIL = 3,
+
+/// Invalid room name (eg, illegal characters)
   CallStatusINVALID_ROOM_NAME = 4,
+
+/// Duplicate room name (name is already taken)
   CallStatusDUPLICATE_ROOM_NAME = 5,
+
+/// Invalid API key
   CallStatusINVALID_API_KEY = 6,
+
+/// Authentication error (invalid user auth)
   CallStatusAUTH_ERROR = 7,
+
+/// Unexpected server communication error (network issues, API server issue, etc)
   CallStatusNETWORK_ERROR = 8,
+
+/// Invalid subscription (user needs to purchase ScreenMeet subscription)
   CallStatusINVALID_SUBSCRIPTION = 9,
 };
 
+
+/// Disconnection reason
+///
+/// <ul><li>SERVER_ERROR: Unexpected server error</li><li>NETWORK_ERROR: Network connection lost</li><li>STARTED_ON_OTHER_DEVICE: Stream started from another device</li></ul>
 typedef SWIFT_ENUM(NSInteger, DisconnectedReason) {
+
+/// Unexpected server error
   DisconnectedReasonSERVER_ERROR = 0,
+
+/// Network connection lost
   DisconnectedReasonNETWORK_ERROR = 1,
+
+/// Stream started from another device
   DisconnectedReasonSTARTED_ON_OTHER_DEVICE = 2,
 };
 
+
+/// Environment used for streaming.
+///
+/// <ul><li>SANDBOX: Used for testing applicaton.</li><li>PRODUCTION: Used for final applicaton.</li></ul>
 typedef SWIFT_ENUM(NSInteger, EnvironmentType) {
+
+/// Used for testing applicaton.
   EnvironmentTypeSANDBOX = 0,
+
+/// Used for final applicaton
   EnvironmentTypePRODUCTION = 1,
 };
 
@@ -176,50 +218,191 @@ enum StreamStateType : NSInteger;
 @class ScreenMeetViewer;
 @class UIImage;
 
+
+/// Main ScreenMeet class to work with ScreenMeet SDK
 SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 @interface ScreenMeet : NSObject
+
+/// Initialize shared instance of ScreenMeet
+///
+/// \param apiKey A string idetifier of application that uses ScreenMeet
+///
+/// \param environment Enum [SANDBOX or PRODUCTION]. Defualt is SANDBOX
 + (void)initSharedInstance:(NSString * _Nonnull)apiKey environment:(enum EnvironmentType)environment;
+
+/// \returns  Shared instance of ScreenMeet
 + (ScreenMeet * _Null_unspecified)sharedInstance;
 @property (nonatomic, readonly, strong) SocketService * _Nonnull socketService;
+
+/// Initializes a new ScreenMeet with the provided apiKey and environment.
+///
+/// \param apiKey A string idetifier of application that uses ScreenMeet
+///
+/// \param environment Enum [SANDBOX or PRODUCTION]. Defualt is SANDBOX
+///
+/// \returns  New ScreenMeet instance
 - (nonnull instancetype)initWithApiKey:(NSString * _Nonnull)apiKey environment:(enum EnvironmentType)environment OBJC_DESIGNATED_INITIALIZER;
+
+/// Authenticate the user with either a username/password. It returns a success or failure state to the callback.
+///
+/// \param username Username
+///
+/// \param password Password
+///
+/// \param callback Is called when operation is finished with result in status variable
 - (void)authenticate:(NSString * _Nonnull)username password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+
+/// Authenticate the user with a bearer token. It will return a success or failure state to the callback.
+///
+/// \param bearerToken Bearer token
+///
+/// \param callback Is called when operation is finished with result in status variable
 - (void)authenticate:(NSString * _Nonnull)bearerToken callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+
+/// \returns  Bearer token of authenticated user or nil is user is not authenticated
 - (NSString * _Null_unspecified)getBearerToken;
+
+/// Create user with specified username and password
+///
+/// \param username Username of user
+///
+/// \param password Password of user
+///
+/// \param callback Is called when operation is finished with result in status variable
 - (void)createUser:(NSString * _Nonnull)email username:(NSString * _Nonnull)username password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+
+/// Update user profile: email, username, password. User must be authenticated, otherwise an error will be produced. Please note that if the password is changed, the bearer token will be updated.
+///
+/// \param email New email value. Use nil in case you dont need to update email value.
+///
+/// \param username New username value. Use nil in case you dont need to update username value.
+///
+/// \param password New password value. Use nil in case you dont need to update password value.
+///
+/// \param callback Is called when operation is finished with result in status variable
 - (void)updateUser:(NSString * _Null_unspecified)email username:(NSString * _Null_unspecified)username password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+
+/// \returns  Is user authenticated
 - (BOOL)isUserLoggedIn;
+
+/// Logout user. If current stream is in progress stops stream.
 - (void)logoutUser;
+
+/// Return ScreenMeet URL to reset password of user by email
+///
+/// \param email Email to reset password
+///
+/// \returns  Url to reset password of user
 - (NSString * _Nonnull)getResetPasswordURL:(NSString * _Nonnull)email;
+
+/// \returns  ScreenMeet room name of the user. User must be authenticated.
 - (NSString * _Null_unspecified)getRoomName;
+
+/// \returns  Unique User identifier
 - (NSString * _Null_unspecified)getUserId;
+
+/// \returns  Username of authenticated user
 - (NSString * _Null_unspecified)getUserName;
+
+/// \returns  Email of authenticated user
 - (NSString * _Null_unspecified)getUserEmail;
+
+/// Update the user’s Room name. Alpha-numeric only.
+///
+/// \param roomName New root name
+///
+/// \param callback Is called when operation is finished with result in status variable
 - (void)setRoomName:(NSString * _Nonnull)roomName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
-- (void)getRoomUrl:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(NSString * _Null_unspecified roomUrl, enum CallStatus status))callback;
+
+/// Returns the fully qualified ScreenMeet room URL for the user’s meetings. User must be authenticated
+///
+/// \param config Screen share config
+///
+/// \param callback Is called when operation is finished with result in roomUrl and status variables
+- (NSString * _Null_unspecified)getRoomUrl;
+
+/// \returns  a boolean representing whether the user’s subscription is valid. If the subscription is invalid, the user will not be able to start a stream
 - (BOOL)isSubscriptionValid;
-- (void)startStream:(UIView * _Nonnull)source config:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)setMeetingConfig:(NSString * _Null_unspecified)password askForName:(BOOL)askForName;
+
+/// Initiate a stream to the user’s room. If successfully started, content of view is now being streamed.
+///
+/// \param source The app UIView object which should be streamed.
+///
+/// \param config Configuration for the meeting
+///
+/// \param callback Is called when operation is finished with result in status variables
+- (void)startStream:(UIView * _Nonnull)source callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+
+/// Switch to a different UIView source object.
+///
+/// \param source UIView that will be used to share
 - (void)switchStreamSource:(UIView * _Nonnull)newSource;
+
+/// Pause the active stream. Keeps the meeting open but stops the capturing/streaming.
 - (void)pauseStream;
+
+/// Resume a paused stream
 - (void)resumeStream;
+
+/// Ends the current screen sharing session
 - (void)stopStream;
+
+/// \returns  Current stream state [ACTIVE, PAUSED, STOPPED]
 - (enum StreamStateType)getStreamState;
+
+/// \returns  count of viewers in the user’s room
 - (NSInteger)getViewerCount;
+
+/// \returns  Array of joined viewers
 - (NSArray<ScreenMeetViewer *> * _Nonnull)getViewers;
+
+/// Kick viewer from stream
+///
+/// \param id ID of viewer to kick
 - (void)kickViewer:(NSString * _Nonnull)id;
+
+/// Set image quality of stream. An integer from 1-100. This sets the compression quality level of the stream, where 1 will use the highest compression possible and result in lower quality and lower bandwidth consumption, while 100 will result in higher quality but more bandwidth consumption. Default is 50.
+///
+/// <ul><li>Parameter<ul><li>quality: Image quality</li></ul></li></ul>
 - (void)setQuality:(NSInteger)quality;
+
+/// Set on viewer joins handler. Use nil to remove handler
+///
+/// \param callback Is called when new viewer joins stream
 - (void)onViewerJoined:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
+
+/// Set on viewer lefts handler. Use nil to remove handler
+///
+/// \param callback Is called when new viewer lefts stream
 - (void)onViewerLeft:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
+
+/// Set on disconnected handler. Use nil to remove handler
+///
+/// \param callback Is called when stream is disconnected with disconnection reason
 - (void)onDisconnected:(void (^ _Null_unspecified)(enum DisconnectedReason reason))callback;
+
+/// Set image processor to change image before send it stream. Use nil to remove handler. Processor should return new image that will be sent to stream
+///
+/// \param callback Is called when new frame image appears before send it to stream.
 - (void)setImageProcessor:(UIImage * _Nonnull (^ _Null_unspecified)(UIImage * _Nonnull sourceImage))processor;
 @end
 
 
+
+/// ScreenMeet viewer model
 SWIFT_CLASS("_TtC13ScreenMeetSDK16ScreenMeetViewer")
 @interface ScreenMeetViewer : NSObject
+
+/// identifier of the viewer
 @property (nonatomic, readonly, copy) NSString * _Nonnull id;
+
+/// name of the viewer
 @property (nonatomic, readonly, copy) NSString * _Nonnull name;
-@property (nonatomic, readonly) NSInteger latency;
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id name:(NSString * _Nonnull)name latency:(NSInteger)latency OBJC_DESIGNATED_INITIALIZER;
+
+/// The delay, in seconds, of how long it’s taking the user’s stream to reach the viewer
+@property (nonatomic, readonly) double latency;
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id name:(NSString * _Nonnull)name latency:(double)latency OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -440,10 +623,12 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @property (nonatomic, copy) NSArray<NSDictionary *> * _Nonnull attendeeList;
 @property (nonatomic, readonly) double screenshotInterval;
 @property (nonatomic) double lastScreenshotTime;
+@property (nonatomic) double lastLatencyCheckTime;
 @property (nonatomic) BOOL isPaused;
 @property (nonatomic, strong) StreamConfig * _Nonnull streamConfig;
 - (void)finishSocketInitializing;
-- (void)startScreenSharing:(StreamConfig * _Nonnull)config;
+- (void)setConfig:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)startScreenSharing;
 - (void)stopScreenSharing;
 - (void)initSocket;
 - (void)addAttendee:(NSDictionary * _Nonnull)attendee;
@@ -456,16 +641,32 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @end
 
 
+
+/// ScreenMeet stream configuration
 SWIFT_CLASS("_TtC13ScreenMeetSDK12StreamConfig")
 @interface StreamConfig : NSObject
+
+/// Password to join stream. Nil is no rassword required
 @property (nonatomic, readonly, copy) NSString * _Null_unspecified password;
+
+/// Ask for viewer name before join the stream
 @property (nonatomic, readonly) BOOL askForName;
 - (nonnull instancetype)initWithPassword:(NSString * _Null_unspecified)password askForName:(BOOL)askForName OBJC_DESIGNATED_INITIALIZER;
 @end
 
+
+/// Stream state
+///
+/// <ul><li>ACTIVE: Stream is active</li><li>PAUSED: Stream is paused</li><li>STOPPED: Stream is stopped</li></ul>
 typedef SWIFT_ENUM(NSInteger, StreamStateType) {
+
+/// Stream is active
   StreamStateTypeACTIVE = 0,
+
+/// Stream is paused
   StreamStateTypePAUSED = 1,
+
+/// Stream is stopped
   StreamStateTypeSTOPPED = 2,
 };
 

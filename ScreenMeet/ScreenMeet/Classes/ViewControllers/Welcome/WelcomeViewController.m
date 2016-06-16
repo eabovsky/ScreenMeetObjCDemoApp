@@ -18,6 +18,7 @@
 
 - (IBAction)showSignUp:(id)sender;
 - (IBAction)showSignIn:(id)sender;
+
 @end
 
 @implementation WelcomeViewController
@@ -42,6 +43,7 @@
 - (IBAction)showSignIn:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *login = [storyBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController pushViewController:login animated:YES];}
+    [self.navigationController pushViewController:login animated:YES];
+}
 
 @end

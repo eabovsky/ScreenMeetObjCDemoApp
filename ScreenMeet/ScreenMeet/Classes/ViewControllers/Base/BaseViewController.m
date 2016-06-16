@@ -42,6 +42,19 @@
      setBackButtonBackgroundVerticalPositionAdjustment:3 forBarMetrics:UIBarMetricsDefault];
 }
 
+- (void)showDefaultError {
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                 message:@"Oops something went wrong"
+                                                delegate:self
+                                       cancelButtonTitle:@"Ok"
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
+- (void)popBack {
+    
+}
+
 - (void)dealloc {
     NSLog(@"dealloc: %@",NSStringFromClass(self.class));
 }

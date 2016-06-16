@@ -35,35 +35,40 @@
     self.title = @"Login";
     self.facebookButton.layer.cornerRadius = 7.f;
     self.loginButton.layer.cornerRadius = 7.f;
+    
+    self.emailTextField.text    = @"iulian.yeremenko@sethq.com";
+    self.passwordTextField.text = @"1qa2ws3ed";
+    
     [self autoLogin];
 }
 
 - (void)autoLogin {
-
     NSString *token = [[ScreenMeet sharedInstance] getBearerToken];
-    [[ScreenMeet sharedInstance] authenticate:token callback:^(enum CallStatus status) {
+    [[ScreenMeet sharedInstance] authenticate:token
+                                     callback:^(enum CallStatus status) {
         if(status == CallStatusSUCCESS) {
             [self goToMainScreen];
+        } else {
+//            [self showDefaultError];
         }
     }];
 }
 
 - (IBAction)loginUpPressed:(id)sender {
     [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
-    
    
-    [[ScreenMeet sharedInstance] authenticate:self.emailTextField.text password:self.passwordTextField.text callback:^(enum CallStatus status) {
+    [[ScreenMeet sharedInstance] authenticate:self.emailTextField.text
+                                     password:self.passwordTextField.text
+                                     callback:^(enum CallStatus status) {
         NSLog(@"Status: %ld", (long)status);
         
         [[MTProgressHUD sharedHUD] dismiss];
         
         if(status == CallStatusSUCCESS) {
             [self goToMainScreen];
+        } else {
+            [self showDefaultError];
         }
-        else {
-            NSLog(@"Wtf");
-        }
-        
     }];
 }
 
