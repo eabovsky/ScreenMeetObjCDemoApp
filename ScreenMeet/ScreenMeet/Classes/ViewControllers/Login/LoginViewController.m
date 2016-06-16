@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 2483:$2a$10$ZpnQhiQcsLiCSyvh.D7WxehEvGdLQXOeOVPZdpVODnstgrYv2f2Bq
+    
     [self setupBackButton];
     
     self.title = @"Login";
@@ -47,8 +47,10 @@
 }
 
 - (void)autoLogin {
+    // Get bearer token
     NSString *token = [[ScreenMeet sharedInstance] getBearerToken];
     
+    // Authenticate with token
     [[ScreenMeet sharedInstance] authenticate:token
                                      callback:^(enum CallStatus status) {
         if(status == CallStatusSUCCESS) {
@@ -61,7 +63,8 @@
 
 - (IBAction)loginUpPressed:(id)sender {
     [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
-   
+    
+    // Authenticate with email and password
     [[ScreenMeet sharedInstance] authenticate:self.emailTextField.text
                                      password:self.passwordTextField.text
                                      callback:^(enum CallStatus status) {
@@ -69,6 +72,7 @@
         
         [[MTProgressHUD sharedHUD] dismiss];
         
+        // Check callback status
         if(status == CallStatusSUCCESS) {
             [self goToMainScreen];
         } else {

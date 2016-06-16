@@ -66,11 +66,6 @@ Incredibly Simple to Use</string>
                                 <state key="normal" title="Login with password">
                                     <color key="titleColor" red="0.074509803920000006" green="0.55294117649999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
-                                        <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginPsdBtnPressed:" destination="Jec-7p-fUb" eventType="touchUpInside" id="xQe-X6-TxM"/>
                                 </connections>
@@ -83,11 +78,6 @@ Incredibly Simple to Use</string>
                                 <state key="normal" title="Login with token">
                                     <color key="titleColor" red="0.074509803920000006" green="0.55294117649999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleColor">
-                                        <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginTokenBtnPressed:" destination="Jec-7p-fUb" eventType="touchUpInside" id="ocb-j2-jIf"/>
                                 </connections>
@@ -222,6 +212,9 @@ Incredibly Simple to Use</string>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
+                                <connections>
+                                    <action selector="valueChanged:" destination="hqU-pO-1Rp" eventType="valueChanged" id="oaH-kp-F6s"/>
+                                </connections>
                             </segmentedControl>
                             <webView contentMode="scaleToFill" id="fGt-W1-GVd">
                                 <rect key="frame" x="0.0" y="82" width="320" height="290"/>

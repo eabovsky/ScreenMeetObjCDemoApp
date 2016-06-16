@@ -9,8 +9,10 @@
 #import "MainViewController.h"
 #import <ScreenMeetSDK/ScreenMeetSDK-Swift.h>
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <Foundation/Foundation.h>
 
-@interface MainViewController ()
+@interface MainViewController () <UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
@@ -25,6 +27,8 @@
 - (IBAction)stopBtnPressed:(UIButton *)sender;
 - (IBAction)pauseBtnPressed:(UIButton *)sender;
 - (IBAction)shareBtnPressed:(UIButton *)sender;
+
+- (IBAction)valueChanged:(UISegmentedControl *)sender;
 
 @end
 
@@ -53,15 +57,18 @@
 }
 
 - (IBAction)startBtnPressed:(UIButton *)sender {
-    [[ScreenMeet sharedInstance] startStream:self.view
+    // Start steaming. Pass view that you want to share.
+    [[ScreenMeet sharedInstance] startStream:[[[UIApplication sharedApplication] delegate] window]
                                     callback:^(enum CallStatus status) {
+        // Check callback status
         if (status == CallStatusSUCCESS) {
             [UIView transitionWithView:self.buttonsView
                               duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromTop
                             animations:^{
-                self.startButton.hidden = YES;
+                // Get streaming URL
                 self.urlTextField.text  = [[ScreenMeet sharedInstance] getRoomUrl];
+                self.startButton.hidden = YES;
                 self.shareButton.hidden = NO;
             } completion:nil];
         } else {
@@ -71,6 +78,7 @@
 }
 
 - (IBAction)stopBtnPressed:(UIButton *)sender {
+    // Stop streaming
     [[ScreenMeet sharedInstance] stopStream];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -92,8 +100,19 @@
     NSLog(@"room URL : %@", self.urlTextField.text);
 }
 
+- (IBAction)valueChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 1) {
+//        UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+//        imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        imgPicker.delegate = self;
+//        [self presentViewController:imgPicker animated:YES completion:nil];
+    }
+}
+
 - (void)popBack {
+    // Check streaming status
     if ([[ScreenMeet sharedInstance] getStreamState] != StreamStateTypeSTOPPED) {
+        // Stop streaming
         [[ScreenMeet sharedInstance] stopStream];
     }
     [self.navigationController popViewControllerAnimated:YES];

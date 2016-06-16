@@ -31,10 +31,12 @@
 }
 
 - (IBAction)signup:(id)sender {
+    // Create user with entered credentials
     [[ScreenMeet sharedInstance] createUser:self.emailTextField.text
                                    username:self.nameTextField.text
                                    password:self.passwordTextField.text
                                    callback:^(enum CallStatus status) {
+        // Check callback status
         if(status == CallStatusSUCCESS) {
             [self goToMainScreen];
         } else {

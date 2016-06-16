@@ -1,3 +1,0 @@
-framework module ScreenMeetSDK {
-    header "ScreenMeetSDK-Swift.h"
-}
