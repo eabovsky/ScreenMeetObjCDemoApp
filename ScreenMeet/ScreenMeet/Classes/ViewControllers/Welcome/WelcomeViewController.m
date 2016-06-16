@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ScreenMeet initSharedInstance:@"Yo" environment:EnvironmentTypeSANDBOX];
+    [ScreenMeet initSharedInstance:@"You" environment:EnvironmentTypeSANDBOX];
     
     self.registerButton.layer.cornerRadius = 7.f;
     
