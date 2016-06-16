@@ -10,6 +10,7 @@
 
 #import "MTProgressHUD.h"
 #import "SignupViewController.h"
+#import "SignupViewController.h"
 #import "MainViewController.h"
 #import <ScreenMeetSDK/ScreenMeetSDK-Swift.h>
 
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *infoContainer;
 
 - (IBAction)loginUpPressed:(id)sender;
+- (IBAction)createBtnPressed:(UIButton *)sender;
 
 @end
 
@@ -30,20 +32,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 2483:$2a$10$ZpnQhiQcsLiCSyvh.D7WxehEvGdLQXOeOVPZdpVODnstgrYv2f2Bq
     [self setupBackButton];
+    
     self.title = @"Login";
+    
     self.facebookButton.layer.cornerRadius = 7.f;
     self.loginButton.layer.cornerRadius = 7.f;
     
-    self.emailTextField.text    = @"iulian.yeremenko@sethq.com";
-    self.passwordTextField.text = @"1qa2ws3ed";
+//    self.emailTextField.text    = @"iulian.yeremenko@sethq.com";
+//    self.passwordTextField.text = @"1qa2ws3ed";
     
-    [self autoLogin];
+//    [self autoLogin];
 }
 
 - (void)autoLogin {
     NSString *token = [[ScreenMeet sharedInstance] getBearerToken];
+    
     [[ScreenMeet sharedInstance] authenticate:token
                                      callback:^(enum CallStatus status) {
         if(status == CallStatusSUCCESS) {
@@ -70,6 +75,9 @@
             [self showDefaultError];
         }
     }];
+}
+
+- (IBAction)createBtnPressed:(UIButton *)sender {
 }
 
 - (IBAction)showSignUp:(id)sender {

@@ -36,6 +36,7 @@
 		7A7D1C4E1D1195A80060B290 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A7D1C3F1D1195A80060B290 /* IQKeyboardManager.bundle */; };
 		7A7D1C531D1195E20060B290 /* IMGActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C501D1195E20060B290 /* IMGActivityIndicator.m */; };
 		7A7D1C541D1195E20060B290 /* MTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C521D1195E20060B290 /* MTProgressHUD.m */; };
+		7A7D1C571D12A84A0060B290 /* LoginTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C561D12A84A0060B290 /* LoginTokenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +109,8 @@
 		7A7D1C501D1195E20060B290 /* IMGActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMGActivityIndicator.m; sourceTree = "<group>"; };
 		7A7D1C511D1195E20060B290 /* MTProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProgressHUD.h; sourceTree = "<group>"; };
 		7A7D1C521D1195E20060B290 /* MTProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProgressHUD.m; sourceTree = "<group>"; };
+		7A7D1C551D12A84A0060B290 /* LoginTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginTokenViewController.h; path = Classes/ViewControllers/Login/LoginTokenViewController.h; sourceTree = "<group>"; };
+		7A7D1C561D12A84A0060B290 /* LoginTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginTokenViewController.m; path = Classes/ViewControllers/Login/LoginTokenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			children = (
 				2FDFF1EF1CF86AAD0014E709 /* LoginViewController.h */,
 				2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */,
+				7A7D1C551D12A84A0060B290 /* LoginTokenViewController.h */,
+				7A7D1C561D12A84A0060B290 /* LoginTokenViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				7A7D1C4A1D1195A80060B290 /* IQPreviousNextView.m in Sources */,
 				7A7D1C481D1195A80060B290 /* IQTextView.m in Sources */,
 				7A7D1C471D1195A80060B290 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				7A7D1C571D12A84A0060B290 /* LoginTokenViewController.m in Sources */,
 				7A7D1C401D1195A80060B290 /* IQNSArray+Sort.m in Sources */,
 				7A7D1C421D1195A80060B290 /* IQUITextFieldView+Additions.m in Sources */,
 				2FD245F81CFC495C0081A4ED /* MainViewController.m in Sources */,
