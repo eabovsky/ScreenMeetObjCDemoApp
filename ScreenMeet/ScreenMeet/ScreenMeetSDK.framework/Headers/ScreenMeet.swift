@@ -255,48 +255,41 @@ public class ScreenMeet: NSObject {
     }
     
     /**
-     - Returns: a boolean representing whether the user’s subscription is valid. If the subscription is invalid, the user will not be able to start a stream
+     Shows share invite link dialog.
+     Allows you to present a popover from a rect in a particular view.
+     `arrowDirections` is a bitfield which specifies what arrow directions are allowed when laying out the popover; for most uses, `UIPopoverArrowDirectionAny` is sufficient.
      */
-    public func isSubscriptionValid() -> Bool {
-        if (!isUserLoggedIn()) { print("Error: User must be authenticated"); return false }
-
-        //TODO
-        return isUserLoggedIn()
+    public func showInviteMeetingLinkDialog(rect: CGRect, inView: UIView, arrowDirections:UIPopoverArrowDirection,  animated:Bool) {
+        ShareTextActivityProvider.showInviteMeetingLinkDialog(rect, inView: inView, arrowDirections: arrowDirections, animated: animated)
     }
-    
+        
     public func setMeetingConfig(password: String!, askForName: Bool) {
         socketService.setConfig(StreamConfig(password: password, askForName: askForName), callback: {_ in })
     }
     
     /**
      Initiate a stream to the user’s room. If successfully started, content of view is now being streamed.
-
+     
      - Parameters:
-        - source: The app UIView object which should be streamed.
-        - config: Configuration for the meeting
-        - callback: Is called when operation is finished with result in status variables
+     - callback: Is called when operation is finished with result in status variables
      */
-    public func startStream(source: UIView, callback: (status: CallStatus) -> Void) {
+    public func startStream(callback: (status: CallStatus) -> Void) {
         if (!isUserLoggedIn()) { print("Error: User must be authenticated"); callback(status: .AUTH_ERROR) }
-        socketService.startScreenSharing()
-        socketService.screenshoter.setCurrentView(source)
-        callback(status: .SUCCESS)
-    }
-
-    /**
-     Switch to a different UIView source object.
-
-     - Parameters:
-        - source: UIView that will be used to share
-     */
-    public func switchStreamSource(newSource: UIView) {
-        if (!isUserLoggedIn()) { print("Error: User must be authenticated"); return }
-
-        if (getStreamState() != .STOPPED) {
-            socketService.screenshoter.setCurrentView(newSource)
+        if (getStreamState() == .STOPPED) {
+            socketService.startScreenSharing(callback)
         } else {
-            print("Error: Start stream before switch stream source")
+            callback(status: .STREAM_ALREADY_STARTED)
         }
+    }
+    
+    /**
+     Set UIView source object. Use 'nil' to do full screen capturing
+     
+     - Parameters:
+     - source: UIView that will be used to share
+     */
+    public func setStreamSource(newSource: UIView!) {
+        socketService.screenshoter.setCurrentView(newSource)
     }
     
     /**
@@ -532,6 +525,7 @@ public class ScreenMeetViewer: NSObject {
     - DUPLICATE_EMAIL: Duplicate e-mail address
     - INVALID_ROOM_NAME: Invalid room name (eg, illegal characters)
     - DUPLICATE_ROOM_NAME: Duplicate room name (name is already taken)
+    - STREAM_ALREADY_STARTED: Stream is already started
     - INVALID_API_KEY: Invalid API key
     - AUTH_ERROR: Authentication error (invalid user auth)
     - NETWORK_ERROR: Unexpected server communication error (network issues, API server issue, etc)
@@ -550,6 +544,8 @@ public class ScreenMeetViewer: NSObject {
     case INVALID_ROOM_NAME
     ///Duplicate room name (name is already taken)
     case DUPLICATE_ROOM_NAME
+    ///Stream is already started
+    case STREAM_ALREADY_STARTED
     ///Invalid API key
     case INVALID_API_KEY
     ///Authentication error (invalid user auth)

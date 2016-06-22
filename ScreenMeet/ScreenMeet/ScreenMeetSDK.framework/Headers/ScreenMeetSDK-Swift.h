@@ -94,8 +94,9 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
 @import ObjectiveC;
 @import Foundation;
-@import Dispatch;
+@import CoreGraphics;
 @import UIKit;
+@import Dispatch;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -145,7 +146,7 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 
 /// Background operation status
 ///
-/// <ul><li>SUCCESS: Operation finished with success</li><li>ALREADY_HAS_ACCOUNT: User already has account</li><li>INVALID_EMAIL: Invalid e-mail address</li><li>DUPLICATE_EMAIL: Duplicate e-mail address</li><li>INVALID_ROOM_NAME: Invalid room name (eg, illegal characters)</li><li>DUPLICATE_ROOM_NAME: Duplicate room name (name is already taken)</li><li>INVALID_API_KEY: Invalid API key</li><li>AUTH_ERROR: Authentication error (invalid user auth)</li><li>NETWORK_ERROR: Unexpected server communication error (network issues, API server issue, etc)</li><li>INVALID_SUBSCRIPTION: Invalid subscription (user needs to purchase ScreenMeet subscription)</li></ul>
+/// <ul><li>SUCCESS: Operation finished with success</li><li>ALREADY_HAS_ACCOUNT: User already has account</li><li>INVALID_EMAIL: Invalid e-mail address</li><li>DUPLICATE_EMAIL: Duplicate e-mail address</li><li>INVALID_ROOM_NAME: Invalid room name (eg, illegal characters)</li><li>DUPLICATE_ROOM_NAME: Duplicate room name (name is already taken)</li><li>STREAM_ALREADY_STARTED: Stream is already started</li><li>INVALID_API_KEY: Invalid API key</li><li>AUTH_ERROR: Authentication error (invalid user auth)</li><li>NETWORK_ERROR: Unexpected server communication error (network issues, API server issue, etc)</li><li>INVALID_SUBSCRIPTION: Invalid subscription (user needs to purchase ScreenMeet subscription)</li></ul>
 typedef SWIFT_ENUM(NSInteger, CallStatus) {
 
 /// Operation finished with success
@@ -166,17 +167,20 @@ typedef SWIFT_ENUM(NSInteger, CallStatus) {
 /// Duplicate room name (name is already taken)
   CallStatusDUPLICATE_ROOM_NAME = 5,
 
+/// Stream is already started
+  CallStatusSTREAM_ALREADY_STARTED = 6,
+
 /// Invalid API key
-  CallStatusINVALID_API_KEY = 6,
+  CallStatusINVALID_API_KEY = 7,
 
 /// Authentication error (invalid user auth)
-  CallStatusAUTH_ERROR = 7,
+  CallStatusAUTH_ERROR = 8,
 
 /// Unexpected server communication error (network issues, API server issue, etc)
-  CallStatusNETWORK_ERROR = 8,
+  CallStatusNETWORK_ERROR = 9,
 
 /// Invalid subscription (user needs to purchase ScreenMeet subscription)
-  CallStatusINVALID_SUBSCRIPTION = 9,
+  CallStatusINVALID_SUBSCRIPTION = 10,
 };
 
 
@@ -321,23 +325,19 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 /// \param callback Is called when operation is finished with result in roomUrl and status variables
 - (NSString * _Null_unspecified)getRoomUrl;
 
-/// \returns  a boolean representing whether the user’s subscription is valid. If the subscription is invalid, the user will not be able to start a stream
-- (BOOL)isSubscriptionValid;
+/// Shows share invite link dialog. Allows you to present a popover from a rect in a particular view. arrowDirections is a bitfield which specifies what arrow directions are allowed when laying out the popover; for most uses, UIPopoverArrowDirectionAny is sufficient.
+- (void)showInviteMeetingLinkDialog:(CGRect)rect inView:(UIView * _Nonnull)inView arrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
 - (void)setMeetingConfig:(NSString * _Null_unspecified)password askForName:(BOOL)askForName;
 
 /// Initiate a stream to the user’s room. If successfully started, content of view is now being streamed.
 ///
-/// \param source The app UIView object which should be streamed.
-///
-/// \param config Configuration for the meeting
-///
-/// \param callback Is called when operation is finished with result in status variables
-- (void)startStream:(UIView * _Nonnull)source callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+/// <ul><li>Parameters:</li><li>callback: Is called when operation is finished with result in status variables</li></ul>
+- (void)startStream:(void (^ _Nonnull)(enum CallStatus status))callback;
 
-/// Switch to a different UIView source object.
+/// Set UIView source object. Use 'nil' to do full screen capturing
 ///
-/// \param source UIView that will be used to share
-- (void)switchStreamSource:(UIView * _Nonnull)newSource;
+/// <ul><li>Parameters:</li><li>source: UIView that will be used to share</li></ul>
+- (void)setStreamSource:(UIView * _Null_unspecified)newSource;
 
 /// Pause the active stream. Keeps the meeting open but stops the capturing/streaming.
 - (void)pauseStream;
@@ -628,11 +628,12 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @property (nonatomic, strong) StreamConfig * _Nonnull streamConfig;
 - (void)finishSocketInitializing;
 - (void)setConfig:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
-- (void)startScreenSharing;
+- (void)startScreenSharing:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)stopScreenSharing;
 - (void)initSocket;
 - (void)addAttendee:(NSDictionary * _Nonnull)attendee;
 - (void)reconnect;
+- (void)onStartStreamTimeout;
 - (void)makeScreenShot;
 - (void)disconnectSocket;
 - (void)kickAttendee:(NSString * _Nonnull)attendeeId;

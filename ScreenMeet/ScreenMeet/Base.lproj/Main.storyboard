@@ -205,19 +205,8 @@ Incredibly Simple to Use</string>
                                     <action selector="shareBtnPressed:" destination="hqU-pO-1Rp" eventType="touchUpInside" id="wuZ-fP-LJJ"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="rA5-OK-vS4">
-                                <rect key="frame" x="8" y="46" width="303" height="29"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                                <connections>
-                                    <action selector="valueChanged:" destination="hqU-pO-1Rp" eventType="valueChanged" id="oaH-kp-F6s"/>
-                                </connections>
-                            </segmentedControl>
                             <webView contentMode="scaleToFill" id="fGt-W1-GVd">
-                                <rect key="frame" x="0.0" y="82" width="320" height="290"/>
+                                <rect key="frame" x="0.0" y="77" width="320" height="295"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
@@ -267,6 +256,20 @@ Incredibly Simple to Use</string>
                                     </button>
                                 </subviews>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Full Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c7g-Pe-yeE">
+                                <rect key="frame" x="8" y="48" width="249" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="N6A-q9-lP9">
+                                <rect key="frame" x="265" y="43" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchPressed:" destination="hqU-pO-1Rp" eventType="valueChanged" id="pTL-bi-ltK"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -275,7 +278,6 @@ Incredibly Simple to Use</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="buttonsView" destination="BC3-c0-yfR" id="mXf-8b-Qeu"/>
-                        <outlet property="segmentControl" destination="rA5-OK-vS4" id="AdU-rF-BOx"/>
                         <outlet property="shareButton" destination="qwG-iO-X9B" id="f8g-Eu-3oJ"/>
                         <outlet property="startButton" destination="y8L-E4-0dU" id="4eP-k1-IY4"/>
                         <outlet property="urlTextField" destination="6ry-bT-Ud6" id="ntw-y2-DyI"/>

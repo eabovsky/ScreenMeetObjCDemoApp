@@ -12,11 +12,12 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
-@interface MainViewController () <UIImagePickerControllerDelegate>
+@interface MainViewController () {
+    UIView *sharedView;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
@@ -28,7 +29,7 @@
 - (IBAction)pauseBtnPressed:(UIButton *)sender;
 - (IBAction)shareBtnPressed:(UIButton *)sender;
 
-- (IBAction)valueChanged:(UISegmentedControl *)sender;
+- (IBAction)switchPressed:(UISwitch *)sender;
 
 @end
 
@@ -57,9 +58,10 @@
 }
 
 - (IBAction)startBtnPressed:(UIButton *)sender {
-    // Start steaming. Pass view that you want to share.
-    [[ScreenMeet sharedInstance] startStream:[[[UIApplication sharedApplication] delegate] window]
-                                    callback:^(enum CallStatus status) {
+    // Pass view that you want to share.
+    [[ScreenMeet sharedInstance] setStreamSource:[[[UIApplication sharedApplication] delegate] window]];
+    // Start steaming.
+    [[ScreenMeet sharedInstance] startStream:^(enum CallStatus status) {
         // Check callback status
         if (status == CallStatusSUCCESS) {
             [UIView transitionWithView:self.buttonsView
@@ -80,7 +82,15 @@
 - (IBAction)stopBtnPressed:(UIButton *)sender {
     // Stop streaming
     [[ScreenMeet sharedInstance] stopStream];
-    [self.navigationController popViewControllerAnimated:YES];
+    [UIView transitionWithView:self.buttonsView
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromBottom
+                    animations:^{
+                        // Get streaming URL
+                        self.urlTextField.text  = @"";
+                        self.startButton.hidden = NO;
+                        self.shareButton.hidden = YES;
+                    } completion:nil];
 }
 
 - (IBAction)pauseBtnPressed:(UIButton *)sender {
@@ -98,15 +108,16 @@
 
 - (IBAction)shareBtnPressed:(UIButton *)sender {
     NSLog(@"room URL : %@", self.urlTextField.text);
+    
+    [[ScreenMeet sharedInstance] showInviteMeetingLinkDialog:self.shareButton.frame
+                                                      inView:self.view
+                                             arrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (IBAction)valueChanged:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 1) {
-//        UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
-//        imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        imgPicker.delegate = self;
-//        [self presentViewController:imgPicker animated:YES completion:nil];
-    }
+- (IBAction)switchPressed:(UISwitch *)sender {
+//    sharedView = sender.on ? nil : self.webView;
+//    
+//    [[ScreenMeet sharedInstance] setStreamSource:sharedView];
 }
 
 - (void)popBack {
@@ -115,6 +126,7 @@
         // Stop streaming
         [[ScreenMeet sharedInstance] stopStream];
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
