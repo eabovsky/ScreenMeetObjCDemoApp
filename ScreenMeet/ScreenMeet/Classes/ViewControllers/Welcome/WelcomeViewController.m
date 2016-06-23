@@ -13,6 +13,7 @@
 #import <ScreenMeetSDK/ScreenMeetSDK-Swift.h>
 
 @interface WelcomeViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginWithTokenButton;

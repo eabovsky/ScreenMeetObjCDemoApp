@@ -7,6 +7,7 @@
 //
 
 #import "SignupViewController.h"
+#import "MTProgressHUD.h"
 #import "ScreenMeetSDK/ScreenMeetSDK-Swift.h"
 #import "MainViewController.h"
 #import "LoginViewController.h"
@@ -31,6 +32,7 @@
 }
 
 - (IBAction)signup:(id)sender {
+    [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
     // Create user with entered credentials
     [[ScreenMeet sharedInstance] createUser:self.emailTextField.text
                                    username:self.nameTextField.text
@@ -38,8 +40,10 @@
                                    callback:^(enum CallStatus status) {
         // Check callback status
         if(status == CallStatusSUCCESS) {
+            [[MTProgressHUD sharedHUD] dismiss];
             [self goToMainScreen];
         } else {
+            [[MTProgressHUD sharedHUD] dismiss];
             [self showDefaultError];
         }
     }];

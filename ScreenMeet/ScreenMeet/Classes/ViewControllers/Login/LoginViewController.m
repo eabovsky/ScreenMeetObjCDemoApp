@@ -69,13 +69,12 @@
                                      password:self.passwordTextField.text
                                      callback:^(enum CallStatus status) {
         NSLog(@"Status: %ld", (long)status);
-        
-        [[MTProgressHUD sharedHUD] dismiss];
-        
         // Check callback status
         if(status == CallStatusSUCCESS) {
+            [[MTProgressHUD sharedHUD] dismiss];
             [self goToMainScreen];
         } else {
+            [[MTProgressHUD sharedHUD] dismiss];
             [self showDefaultError];
         }
     }];

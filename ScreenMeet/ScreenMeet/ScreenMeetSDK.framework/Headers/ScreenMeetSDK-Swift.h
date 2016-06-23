@@ -677,11 +677,6 @@ typedef SWIFT_ENUM(NSInteger, StreamStateType) {
 @property (nonatomic, readonly, copy) NSString * _Nonnull modelName;
 @end
 
-
-SWIFT_CLASS("_TtC13ScreenMeetSDK16UIGestureTracker")
-@interface UIGestureTracker : NSObject <UIGestureRecognizerDelegate>
-@end
-
 @class NSStream;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK9WebSocket")

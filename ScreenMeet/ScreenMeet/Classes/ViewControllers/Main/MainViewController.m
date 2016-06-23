@@ -7,12 +7,14 @@
 //
 
 #import "MainViewController.h"
+#import "MTProgressHUD.h"
 #import <ScreenMeetSDK/ScreenMeetSDK-Swift.h>
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
-@interface MainViewController () {
+@interface MainViewController ()
+<UIWebViewDelegate> {
     UIView *sharedView;
 }
 
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 
 - (IBAction)startBtnPressed:(UIButton *)sender;
 - (IBAction)stopBtnPressed:(UIButton *)sender;
@@ -45,6 +48,8 @@
 }
 
 - (void)initWebView {
+    self.webView.delegate = self;
+    
     NSString *urlAddress = @"https://google.com";
     
     //Create a URL object.
@@ -58,12 +63,12 @@
 }
 
 - (IBAction)startBtnPressed:(UIButton *)sender {
-    // Pass view that you want to share.
-    [[ScreenMeet sharedInstance] setStreamSource:[[[UIApplication sharedApplication] delegate] window]];
+    [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
     // Start steaming.
     [[ScreenMeet sharedInstance] startStream:^(enum CallStatus status) {
         // Check callback status
         if (status == CallStatusSUCCESS) {
+            [[MTProgressHUD sharedHUD] dismiss];
             [UIView transitionWithView:self.buttonsView
                               duration:0.5
                                options:UIViewAnimationOptionTransitionFlipFromTop
@@ -74,6 +79,7 @@
                 self.shareButton.hidden = NO;
             } completion:nil];
         } else {
+            [[MTProgressHUD sharedHUD] dismiss];
             [self showDefaultError];
         }
     }];
@@ -86,10 +92,11 @@
                       duration:0.5
                        options:UIViewAnimationOptionTransitionFlipFromBottom
                     animations:^{
-                        // Get streaming URL
-                        self.urlTextField.text  = @"";
-                        self.startButton.hidden = NO;
-                        self.shareButton.hidden = YES;
+                        // Reset states
+                        self.urlTextField.text    = @"";
+                        self.startButton.hidden   = NO;
+                        self.shareButton.hidden   = YES;
+                        self.pauseButton.selected = NO;
                     } completion:nil];
 }
 
@@ -108,7 +115,7 @@
 
 - (IBAction)shareBtnPressed:(UIButton *)sender {
     NSLog(@"room URL : %@", self.urlTextField.text);
-    
+    // Show share dialog
     [[ScreenMeet sharedInstance] showInviteMeetingLinkDialog:self.shareButton.frame
                                                       inView:self.view
                                              arrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -116,8 +123,16 @@
 
 - (IBAction)switchPressed:(UISwitch *)sender {
     sharedView = sender.on ? nil : self.webView;
-    
+    // Pass view that you want to share.
     [[ScreenMeet sharedInstance] setStreamSource:sharedView];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [[MTProgressHUD sharedHUD] showOnView:self.view percentage:NO];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [[MTProgressHUD sharedHUD] dismiss];
 }
 
 - (void)popBack {
@@ -126,6 +141,9 @@
         // Stop streaming
         [[ScreenMeet sharedInstance] stopStream];
     }
+    
+    // Logout user
+    [[ScreenMeet sharedInstance] logoutUser];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

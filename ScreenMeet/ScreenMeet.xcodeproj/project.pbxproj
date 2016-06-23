@@ -17,8 +17,8 @@
 		2FDFF1F11CF86AAD0014E709 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */; };
 		2FDFF1F41CF86AD20014E709 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F31CF86AD20014E709 /* SignupViewController.m */; };
 		2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */; };
-		7A1B7C381D1BFA03000EB46B /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */; };
-		7A1B7C391D1BFA03000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A1B7C3C1D1C07E3000EB46B /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C3A1D1C07D0000EB46B /* ScreenMeetSDK.framework */; };
+		7A1B7C3D1D1C07E3000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C3A1D1C07D0000EB46B /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A7D1C401D1195A80060B290 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C1D1D1195A80060B290 /* IQNSArray+Sort.m */; };
 		7A7D1C411D1195A80060B290 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C1F1D1195A80060B290 /* IQUIScrollView+Additions.m */; };
 		7A7D1C421D1195A80060B290 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C211D1195A80060B290 /* IQUITextFieldView+Additions.m */; };
@@ -40,13 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7A7D1C5C1D12E2230060B290 /* Embed Frameworks */ = {
+		7A1B7C3E1D1C07E3000EB46B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7A1B7C391D1BFA03000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */,
+				7A1B7C3D1D1C07E3000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,7 +72,7 @@
 		2FDFF1F31CF86AD20014E709 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = Classes/ViewControllers/Signup/SignupViewController.m; sourceTree = "<group>"; };
 		2FDFF1FE1CF872FC0014E709 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Classes/ViewControllers/Base/BaseViewController.h; sourceTree = "<group>"; };
 		2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Classes/ViewControllers/Base/BaseViewController.m; sourceTree = "<group>"; };
-		7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenMeetSDK.framework; sourceTree = "<group>"; };
+		7A1B7C3A1D1C07D0000EB46B /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenMeetSDK.framework; sourceTree = "<group>"; };
 		7A7D1C1C1D1195A80060B290 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		7A7D1C1D1D1195A80060B290 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		7A7D1C1E1D1195A80060B290 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A1B7C381D1BFA03000EB46B /* ScreenMeetSDK.framework in Frameworks */,
+				7A1B7C3C1D1C07E3000EB46B /* ScreenMeetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 		2FDFF2011CF87BF90014E709 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */,
+				7A1B7C3A1D1C07D0000EB46B /* ScreenMeetSDK.framework */,
 				7A7D1C1A1D1195A80060B290 /* IQKeyboardManager */,
 				2FDFF2061CF8867F0014E709 /* ProgressHUD */,
 			);
@@ -344,7 +344,7 @@
 				2FDFF1CA1CF856E70014E709 /* Frameworks */,
 				2FDFF1CB1CF856E70014E709 /* Resources */,
 				2FDFF2101CF88BFA0014E709 /* ShellScript */,
-				7A7D1C5C1D12E2230060B290 /* Embed Frameworks */,
+				7A1B7C3E1D1C07E3000EB46B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
