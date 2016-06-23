@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Welcome";
+    
     [ScreenMeet initSharedInstance:@"You" environment:EnvironmentTypeSANDBOX];
     
     self.registerButton.layer.cornerRadius = 7.f;

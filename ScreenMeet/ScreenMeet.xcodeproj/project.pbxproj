@@ -17,6 +17,8 @@
 		2FDFF1F11CF86AAD0014E709 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F01CF86AAD0014E709 /* LoginViewController.m */; };
 		2FDFF1F41CF86AD20014E709 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1F31CF86AD20014E709 /* SignupViewController.m */; };
 		2FDFF2001CF872FC0014E709 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */; };
+		7A1B7C381D1BFA03000EB46B /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */; };
+		7A1B7C391D1BFA03000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A7D1C401D1195A80060B290 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C1D1D1195A80060B290 /* IQNSArray+Sort.m */; };
 		7A7D1C411D1195A80060B290 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C1F1D1195A80060B290 /* IQUIScrollView+Additions.m */; };
 		7A7D1C421D1195A80060B290 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C211D1195A80060B290 /* IQUITextFieldView+Additions.m */; };
@@ -35,8 +37,6 @@
 		7A7D1C531D1195E20060B290 /* IMGActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C501D1195E20060B290 /* IMGActivityIndicator.m */; };
 		7A7D1C541D1195E20060B290 /* MTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C521D1195E20060B290 /* MTProgressHUD.m */; };
 		7A7D1C571D12A84A0060B290 /* LoginTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D1C561D12A84A0060B290 /* LoginTokenViewController.m */; };
-		7AFC90AE1D1AE19500D74B3C /* ScreenMeetSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFC90AC1D1AE18F00D74B3C /* ScreenMeetSDK.framework */; };
-		7AFC90AF1D1AE19500D74B3C /* ScreenMeetSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFC90AC1D1AE18F00D74B3C /* ScreenMeetSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7AFC90AF1D1AE19500D74B3C /* ScreenMeetSDK.framework in Embed Frameworks */,
+				7A1B7C391D1BFA03000EB46B /* ScreenMeetSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +72,7 @@
 		2FDFF1F31CF86AD20014E709 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = Classes/ViewControllers/Signup/SignupViewController.m; sourceTree = "<group>"; };
 		2FDFF1FE1CF872FC0014E709 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Classes/ViewControllers/Base/BaseViewController.h; sourceTree = "<group>"; };
 		2FDFF1FF1CF872FC0014E709 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Classes/ViewControllers/Base/BaseViewController.m; sourceTree = "<group>"; };
+		7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenMeetSDK.framework; sourceTree = "<group>"; };
 		7A7D1C1C1D1195A80060B290 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		7A7D1C1D1D1195A80060B290 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		7A7D1C1E1D1195A80060B290 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		7A7D1C521D1195E20060B290 /* MTProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProgressHUD.m; sourceTree = "<group>"; };
 		7A7D1C551D12A84A0060B290 /* LoginTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginTokenViewController.h; path = Classes/ViewControllers/Login/LoginTokenViewController.h; sourceTree = "<group>"; };
 		7A7D1C561D12A84A0060B290 /* LoginTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginTokenViewController.m; path = Classes/ViewControllers/Login/LoginTokenViewController.m; sourceTree = "<group>"; };
-		7AFC90AC1D1AE18F00D74B3C /* ScreenMeetSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScreenMeetSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AFC90AE1D1AE19500D74B3C /* ScreenMeetSDK.framework in Frameworks */,
+				7A1B7C381D1BFA03000EB46B /* ScreenMeetSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,7 @@
 		2FDFF2011CF87BF90014E709 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				7AFC90AC1D1AE18F00D74B3C /* ScreenMeetSDK.framework */,
+				7A1B7C321D1BF9E4000EB46B /* ScreenMeetSDK.framework */,
 				7A7D1C1A1D1195A80060B290 /* IQKeyboardManager */,
 				2FDFF2061CF8867F0014E709 /* ProgressHUD */,
 			);

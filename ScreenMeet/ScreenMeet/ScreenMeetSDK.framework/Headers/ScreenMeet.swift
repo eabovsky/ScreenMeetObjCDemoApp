@@ -289,7 +289,7 @@ public class ScreenMeet: NSObject {
      - source: UIView that will be used to share
      */
     public func setStreamSource(newSource: UIView!) {
-        socketService.screenshoter.setCurrentView(newSource)
+        socketService.setStreamSource(newSource)
     }
     
     /**

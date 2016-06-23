@@ -115,9 +115,9 @@
 }
 
 - (IBAction)switchPressed:(UISwitch *)sender {
-//    sharedView = sender.on ? nil : self.webView;
-//    
-//    [[ScreenMeet sharedInstance] setStreamSource:sharedView];
+    sharedView = sender.on ? nil : self.webView;
+    
+    [[ScreenMeet sharedInstance] setStreamSource:sharedView];
 }
 
 - (void)popBack {

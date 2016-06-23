@@ -630,6 +630,7 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 - (void)setConfig:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)startScreenSharing:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)stopScreenSharing;
+- (void)setStreamSource:(UIView * _Null_unspecified)newSource;
 - (void)initSocket;
 - (void)addAttendee:(NSDictionary * _Nonnull)attendee;
 - (void)reconnect;
@@ -674,6 +675,11 @@ typedef SWIFT_ENUM(NSInteger, StreamStateType) {
 
 @interface UIDevice (SWIFT_EXTENSION(ScreenMeetSDK))
 @property (nonatomic, readonly, copy) NSString * _Nonnull modelName;
+@end
+
+
+SWIFT_CLASS("_TtC13ScreenMeetSDK16UIGestureTracker")
+@interface UIGestureTracker : NSObject <UIGestureRecognizerDelegate>
 @end
 
 @class NSStream;
