@@ -6,31 +6,31 @@
 	<dict>
 		<key>Headers/ScreenMeet.swift</key>
 		<data>
-		nbW4s993Q5T12LevpZ9JlktZhLE=
+		E0GYCRHRP+spN2pWUTt50nZRHkA=
 		</data>
 		<key>Headers/ScreenMeetSDK-Swift.h</key>
 		<data>
-		PqwexKN6+F+pyAzmiobqXUGtI9k=
+		b5pqc0Rt3WoRJ4F0rZHHTBfeZig=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		wdmdDmYZAHS54Xxxv6TqLGKN5cA=
+		jqrWZKWgUs1RVoaWkXH3QcI8fK8=
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
-		Q+7oP96P44GlVE1tzk5R2Kt9rOA=
+		D/gKDS3PyKlpp8NfvoWj5LS/Dwc=
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		+MwJ/sTAB/3kG+t6g3YGdBIWNHw=
+		gl1Uwyf8bihohJhEfdCqAEiV9o0=
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		utlq/sKWAKajhb7rROcvbuds+rQ=
+		KrYx0/tX1bK/pHnMWuFellv6H+A=
 		</data>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		7nRqmWgqJEGMHzmv3lQDgcfbDug=
+		EOzYWL4gHSm2M4epACqvW8k4TZk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,66 +43,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nbW4s993Q5T12LevpZ9JlktZhLE=
+			E0GYCRHRP+spN2pWUTt50nZRHkA=
 			</data>
 			<key>hash2</key>
 			<data>
-			qrKmZBdQXuABpnqnkmhl2i/VrzBDuiQJQ+nljovRDhs=
+			GQCWIjTBRQe012dNJDEyGxzWS7BzlCUBRy5o0fr2KK4=
 			</data>
 		</dict>
 		<key>Headers/ScreenMeetSDK-Swift.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			PqwexKN6+F+pyAzmiobqXUGtI9k=
+			b5pqc0Rt3WoRJ4F0rZHHTBfeZig=
 			</data>
 			<key>hash2</key>
 			<data>
-			LiDewe4fbY52//u67n61nK74f1EGe+RJf3F1cT1jQ1k=
+			kIDlUP/0jojmJasmR8QwLJNroDJ/kLIY/0nUc4EH5jg=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Q+7oP96P44GlVE1tzk5R2Kt9rOA=
+			D/gKDS3PyKlpp8NfvoWj5LS/Dwc=
 			</data>
 			<key>hash2</key>
 			<data>
-			LcOQEQgqcgIAIuOH9AFgMv5Y7eSI3GltUMfpn7rionU=
+			VPNQBXB8iH6GS9PhmXl5pssXR8l6MkRl25ZAjJvXHg0=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			+MwJ/sTAB/3kG+t6g3YGdBIWNHw=
+			gl1Uwyf8bihohJhEfdCqAEiV9o0=
 			</data>
 			<key>hash2</key>
 			<data>
-			5OHbjEEJ4AtVfdM22LAzbDY02kMoY9/CLotSNm5mQtw=
+			MGck3yc9oSM3LpGpsgmu5gfnlBf2Dv4/ufP9a8A8TOc=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			utlq/sKWAKajhb7rROcvbuds+rQ=
+			KrYx0/tX1bK/pHnMWuFellv6H+A=
 			</data>
 			<key>hash2</key>
 			<data>
-			uwgDUxGx/XWnkLFSNczVKGvPIL7IJFhyBRn5kHxpZBU=
+			f6UAtKXHRtFDXEHoixhTgiot7qvh58LbN0m88gw/xQM=
 			</data>
 		</dict>
 		<key>Modules/ScreenMeetSDK.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			7nRqmWgqJEGMHzmv3lQDgcfbDug=
+			EOzYWL4gHSm2M4epACqvW8k4TZk=
 			</data>
 			<key>hash2</key>
 			<data>
-			gOGWfesgTL9QJ9QeSIRBlhh2spW+sHYuGOHXEFQBLw0=
+			4gkI2wp+zr53PoFBdMVQQ26lziQURQ4AQrMKccveUgQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

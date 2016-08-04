@@ -72,7 +72,7 @@ public class ScreenMeet: NSObject {
         BackendClient.loginUser(username, password: password, bearer: nil, callback: {status in
             if (status == .SUCCESS) {
                 //use default stream config
-                self.socketService.setConfig(StreamConfig(), callback: {s in
+                self.socketService.setConfig(MeetingConfig(), callback: {s in
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(status: s)
                     }
@@ -95,7 +95,7 @@ public class ScreenMeet: NSObject {
         BackendClient.loginUser(nil, password: nil, bearer: bearerToken, callback: {status in
             if (status == .SUCCESS) {
                 //use default stream config
-                self.socketService.setConfig(StreamConfig(), callback: {s in
+                self.socketService.setConfig(MeetingConfig(), callback: {s in
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(status: s)
                     }
@@ -129,7 +129,7 @@ public class ScreenMeet: NSObject {
         BackendClient.registerUser(username, email: email, password: password, callback: {status in
             if (status == .SUCCESS) {
                 //use default stream config
-                self.socketService.setConfig(StreamConfig(), callback: {s in
+                self.socketService.setConfig(MeetingConfig(), callback: {s in
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(status: s)
                     }
@@ -237,8 +237,16 @@ public class ScreenMeet: NSObject {
         if (!isUserLoggedIn()) { print("Error: User must be authenticated"); callback(status: .AUTH_ERROR) }
         
         BackendClient.setRoomName(roomName, callback: {status in
-            dispatch_async(dispatch_get_main_queue()) {
-                callback(status: status)
+            if (status == .SUCCESS) {
+                BackendClient.getInviteText(self.socketService.streamConfig, callback: {s in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        callback(status: s)
+                    }
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    callback(status: status)
+                }
             }
         })
     }
@@ -263,8 +271,16 @@ public class ScreenMeet: NSObject {
         ShareTextActivityProvider.showInviteMeetingLinkDialog(rect, inView: inView, arrowDirections: arrowDirections, animated: animated)
     }
         
-    public func setMeetingConfig(password: String!, askForName: Bool) {
-        socketService.setConfig(StreamConfig(password: password, askForName: askForName), callback: {_ in })
+    public func setMeetingConfig(password: String!, askForName: Bool, callback: (status: CallStatus) -> Void) {
+        setMeetingConfig(MeetingConfig(password: password, askForName: askForName), callback: callback)
+    }
+    
+    public func setMeetingConfig(config: MeetingConfig, callback: (status: CallStatus) -> Void) {
+        socketService.setConfig(config, callback: callback)
+    }
+    
+    public func getMeetingConfig() -> MeetingConfig {
+        return socketService.streamConfig
     }
     
     /**
@@ -293,11 +309,22 @@ public class ScreenMeet: NSObject {
     }
     
     /**
+     Set UIImage source object. Use 'nil' to do screen capturing
+     
+     - Parameters:
+     - source: UIImage that will be used to share
+     */
+    public func setStreamImage(image: UIImage!) {
+        socketService.screenshoter.setImageToStream(image)
+    }
+    
+    /**
      Pause the active stream. Keeps the meeting open but stops the capturing/streaming.
      */
     public func pauseStream() {
         if (getStreamState() == .ACTIVE) {
             socketService.isPaused = true
+            self.notifyAboutStreamStateChange(.PAUSED)
         } else {
             print("Warning: Stream is \(getStreamState()) and cannot be paused")
         }
@@ -309,6 +336,7 @@ public class ScreenMeet: NSObject {
     public func resumeStream() {
         if (getStreamState() == .PAUSED) {
             socketService.isPaused = false
+            self.notifyAboutStreamStateChange(.ACTIVE)
         } else {
             print("Warning: Stream is \(getStreamState()) and cannot be resumed")
         }
@@ -329,7 +357,7 @@ public class ScreenMeet: NSObject {
      - Returns: Current stream state [ACTIVE, PAUSED, STOPPED]
      */
     public func getStreamState() -> StreamStateType {
-        if (!isUserLoggedIn()) { print("User must be authenticated"); return .STOPPED}
+        if (!isUserLoggedIn()) { return .STOPPED}
 
         if (socketService.screenSharingEnabled){
             if (socketService.isPaused){
@@ -348,7 +376,6 @@ public class ScreenMeet: NSObject {
         if (socketService.screenSharingEnabled){
             return socketService.attendeeList.count
         }
-        print("Warning: Stream is stopped. No joined viewers")
         return 0
     }
     
@@ -362,7 +389,6 @@ public class ScreenMeet: NSObject {
                 vs.append(ScreenMeetViewer(data: a))
             }
         }
-        print("Warning: Stream is stopped. No joined viewers")
         return vs
     }
     
@@ -382,6 +408,13 @@ public class ScreenMeet: NSObject {
      */
     public func setQuality(quality: Int = 50) {
         socketService.screenshoter.imageQuality = quality
+    }
+    
+    /**
+     - Returns: Image quality of stream
+     */
+    public func getQuality() -> Int {
+        return socketService.screenshoter.imageQuality
     }
     
     var viewerJoinedHandler: ((viewer: ScreenMeetViewer) -> Void)! = nil
@@ -406,15 +439,23 @@ public class ScreenMeet: NSObject {
         viewerLeftHandler = callback
     }
 
-    var disconnectedHandler: ((reason: DisconnectedReason) -> Void)! = nil
+    var streamStateChangeHandler: ((newState: StreamStateType, reason: StreamStateChangedReason) -> Void)! = nil
     
     /**
-     Set on disconnected handler. Use nil to remove handler
+     Set on stream state changed handler. Use nil to remove handler
      - Parameters:
-        - callback: Is called when stream is disconnected with disconnection reason
+        - callback: Is called when stream status is changed with reason
      */
-    public func onDisconnected(callback: ((reason: DisconnectedReason) -> Void)!) {
-        disconnectedHandler = callback
+    public func onStreamStateChanged(callback: ((newState: StreamStateType, reason: StreamStateChangedReason) -> Void)!) {
+        streamStateChangeHandler = callback
+    }
+    
+    func notifyAboutStreamStateChange(newState: StreamStateType, reason: StreamStateChangedReason = .API_CALL){
+        if (self.streamStateChangeHandler != nil) {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.streamStateChangeHandler(newState: newState, reason: reason)
+            }
+        }
     }
 
     var imageProc: ((sourceImage: UIImage) -> UIImage)! = nil
@@ -431,7 +472,7 @@ public class ScreenMeet: NSObject {
 }
 
 /// ScreenMeet stream configuration
-public class StreamConfig: NSObject {
+public class MeetingConfig: NSObject {
 
     /// Password to join stream. Nil is no rassword required
     public let password: String!
@@ -467,7 +508,11 @@ public class ScreenMeetViewer: NSObject {
     init(data: NSDictionary){
         self.id = data["id"]! as! String
         self.name = data["name"]! as! String
-        self.latency = data["latency"] == nil ? 0 : data["latency"]! as! Double
+        if let l = data["latency"] as? Double {
+            self.latency = l
+        } else {
+            self.latency = 0
+        }
     }
 }
 
@@ -503,11 +548,14 @@ public class ScreenMeetViewer: NSObject {
 /**
     Disconnection reason
  
+    - API_CALL: Direct API call
     - SERVER_ERROR: Unexpected server error
     - NETWORK_ERROR: Network connection lost
     - STARTED_ON_OTHER_DEVICE: Stream started from another device
  */
-@objc public enum DisconnectedReason: Int {
+@objc public enum StreamStateChangedReason: Int {
+    ///API call
+    case API_CALL
     ///Unexpected server error
     case SERVER_ERROR
     ///Network connection lost

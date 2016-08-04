@@ -104,7 +104,7 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @class ScreenMeet;
 @class NSDictionary;
 enum CallStatus : NSInteger;
-@class StreamConfig;
+@class MeetingConfig;
 
 SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 @interface BackendClient : NSObject
@@ -124,14 +124,21 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 + (void)setEndpointInfo:(NSDictionary * _Null_unspecified)value;
 + (NSDictionary * _Null_unspecified)webConfig;
 + (void)setWebConfig:(NSDictionary * _Null_unspecified)value;
++ (NSDictionary * _Null_unspecified)plans;
++ (void)setPlans:(NSDictionary * _Null_unspecified)value;
++ (NSDictionary * _Null_unspecified)meetingStopInfo;
++ (void)setMeetingStopInfo:(NSDictionary * _Null_unspecified)value;
++ (NSString * _Nonnull)baseUrl;
 + (void)loginUser:(NSString * _Null_unspecified)login password:(NSString * _Null_unspecified)password bearer:(NSString * _Null_unspecified)bearer callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)logout;
 + (void)loginUserWithGoogle:(NSString * _Nonnull)googleToken callback:(void (^ _Nonnull)(NSString * _Null_unspecified email, enum CallStatus status))callback;
-+ (void)getInviteText:(StreamConfig * _Nonnull)conf callback:(void (^ _Nonnull)(enum CallStatus status))callback;
-+ (void)updateProfile:(NSString * _Nonnull)email name:(NSString * _Nonnull)name password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)getInviteText:(MeetingConfig * _Nonnull)conf callback:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)updateProfile:(NSString * _Null_unspecified)email name:(NSString * _Null_unspecified)name password:(NSString * _Null_unspecified)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)setRoomName:(NSString * _Nonnull)roomName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)discoverEndpoint:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)getWebsiteConfig;
++ (void)getPlans:(void (^ _Nonnull)(enum CallStatus status))callback;
++ (void)activatePlan:(NSString * _Nonnull)sku transactionId:(NSString * _Nonnull)transactionId receiptB64:(NSString * _Nonnull)receiptB64 callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)registerUser:(NSString * _Nonnull)name email:(NSString * _Nonnull)email password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 + (void)sendPostRequest:(NSString * _Nonnull)url params:(NSDictionary<NSString *, NSObject *> * _Nonnull)params callback:(void (^ _Nonnull)(NSDictionary * _Null_unspecified json, enum CallStatus status))callback;
 + (void)sendGetRequest:(NSString * _Nonnull)url callback:(void (^ _Nonnull)(NSDictionary * _Null_unspecified json, enum CallStatus status))callback;
@@ -140,6 +147,7 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13BackendClient")
 + (NSString * _Nonnull)deviceName;
 + (NSString * _Nonnull)currentTime;
 + (void)addBrowserEvent:(NSString * _Nonnull)url;
++ (void)initAnalyticSender;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -184,22 +192,6 @@ typedef SWIFT_ENUM(NSInteger, CallStatus) {
 };
 
 
-/// Disconnection reason
-///
-/// <ul><li>SERVER_ERROR: Unexpected server error</li><li>NETWORK_ERROR: Network connection lost</li><li>STARTED_ON_OTHER_DEVICE: Stream started from another device</li></ul>
-typedef SWIFT_ENUM(NSInteger, DisconnectedReason) {
-
-/// Unexpected server error
-  DisconnectedReasonSERVER_ERROR = 0,
-
-/// Network connection lost
-  DisconnectedReasonNETWORK_ERROR = 1,
-
-/// Stream started from another device
-  DisconnectedReasonSTARTED_ON_OTHER_DEVICE = 2,
-};
-
-
 /// Environment used for streaming.
 ///
 /// <ul><li>SANDBOX: Used for testing applicaton.</li><li>PRODUCTION: Used for final applicaton.</li></ul>
@@ -213,14 +205,29 @@ typedef SWIFT_ENUM(NSInteger, EnvironmentType) {
 };
 
 
+
+/// ScreenMeet stream configuration
+SWIFT_CLASS("_TtC13ScreenMeetSDK13MeetingConfig")
+@interface MeetingConfig : NSObject
+
+/// Password to join stream. Nil is no rassword required
+@property (nonatomic, readonly, copy) NSString * _Null_unspecified password;
+
+/// Ask for viewer name before join the stream
+@property (nonatomic, readonly) BOOL askForName;
+- (nonnull instancetype)initWithPassword:(NSString * _Null_unspecified)password askForName:(BOOL)askForName OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 @interface NSDictionary (SWIFT_EXTENSION(ScreenMeetSDK))
 @end
 
 @class SocketService;
 @class UIView;
+@class UIImage;
 enum StreamStateType : NSInteger;
 @class ScreenMeetViewer;
-@class UIImage;
+enum StreamStateChangedReason : NSInteger;
 
 
 /// Main ScreenMeet class to work with ScreenMeet SDK
@@ -327,7 +334,9 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 
 /// Shows share invite link dialog. Allows you to present a popover from a rect in a particular view. arrowDirections is a bitfield which specifies what arrow directions are allowed when laying out the popover; for most uses, UIPopoverArrowDirectionAny is sufficient.
 - (void)showInviteMeetingLinkDialog:(CGRect)rect inView:(UIView * _Nonnull)inView arrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
-- (void)setMeetingConfig:(NSString * _Null_unspecified)password askForName:(BOOL)askForName;
+- (void)setMeetingConfig:(NSString * _Null_unspecified)password askForName:(BOOL)askForName callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)setMeetingConfig:(MeetingConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (MeetingConfig * _Nonnull)getMeetingConfig;
 
 /// Initiate a stream to the user’s room. If successfully started, content of view is now being streamed.
 ///
@@ -338,6 +347,11 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 ///
 /// <ul><li>Parameters:</li><li>source: UIView that will be used to share</li></ul>
 - (void)setStreamSource:(UIView * _Null_unspecified)newSource;
+
+/// Set UIImage source object. Use 'nil' to do screen capturing
+///
+/// <ul><li>Parameters:</li><li>source: UIImage that will be used to share</li></ul>
+- (void)setStreamImage:(UIImage * _Null_unspecified)image;
 
 /// Pause the active stream. Keeps the meeting open but stops the capturing/streaming.
 - (void)pauseStream;
@@ -367,6 +381,9 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 /// <ul><li>Parameter<ul><li>quality: Image quality</li></ul></li></ul>
 - (void)setQuality:(NSInteger)quality;
 
+/// \returns  Image quality of stream
+- (NSInteger)getQuality;
+
 /// Set on viewer joins handler. Use nil to remove handler
 ///
 /// \param callback Is called when new viewer joins stream
@@ -377,10 +394,10 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK10ScreenMeet")
 /// \param callback Is called when new viewer lefts stream
 - (void)onViewerLeft:(void (^ _Null_unspecified)(ScreenMeetViewer * _Nonnull viewer))callback;
 
-/// Set on disconnected handler. Use nil to remove handler
+/// Set on stream state changed handler. Use nil to remove handler
 ///
-/// \param callback Is called when stream is disconnected with disconnection reason
-- (void)onDisconnected:(void (^ _Null_unspecified)(enum DisconnectedReason reason))callback;
+/// \param callback Is called when stream status is changed with reason
+- (void)onStreamStateChanged:(void (^ _Null_unspecified)(enum StreamStateType newState, enum StreamStateChangedReason reason))callback;
 
 /// Set image processor to change image before send it stream. Use nil to remove handler. Processor should return new image that will be sent to stream
 ///
@@ -625,9 +642,9 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @property (nonatomic) double lastScreenshotTime;
 @property (nonatomic) double lastLatencyCheckTime;
 @property (nonatomic) BOOL isPaused;
-@property (nonatomic, strong) StreamConfig * _Nonnull streamConfig;
+@property (nonatomic, strong) MeetingConfig * _Nonnull streamConfig;
 - (void)finishSocketInitializing;
-- (void)setConfig:(StreamConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
+- (void)setConfig:(MeetingConfig * _Nonnull)config callback:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)startScreenSharing:(void (^ _Nonnull)(enum CallStatus status))callback;
 - (void)stopScreenSharing;
 - (void)setStreamSource:(UIView * _Null_unspecified)newSource;
@@ -643,18 +660,23 @@ SWIFT_CLASS("_TtC13ScreenMeetSDK13SocketService")
 @end
 
 
+/// Disconnection reason
+///
+/// <ul><li>API_CALL: Direct API call</li><li>SERVER_ERROR: Unexpected server error</li><li>NETWORK_ERROR: Network connection lost</li><li>STARTED_ON_OTHER_DEVICE: Stream started from another device</li></ul>
+typedef SWIFT_ENUM(NSInteger, StreamStateChangedReason) {
 
-/// ScreenMeet stream configuration
-SWIFT_CLASS("_TtC13ScreenMeetSDK12StreamConfig")
-@interface StreamConfig : NSObject
+/// API call
+  StreamStateChangedReasonAPI_CALL = 0,
 
-/// Password to join stream. Nil is no rassword required
-@property (nonatomic, readonly, copy) NSString * _Null_unspecified password;
+/// Unexpected server error
+  StreamStateChangedReasonSERVER_ERROR = 1,
 
-/// Ask for viewer name before join the stream
-@property (nonatomic, readonly) BOOL askForName;
-- (nonnull instancetype)initWithPassword:(NSString * _Null_unspecified)password askForName:(BOOL)askForName OBJC_DESIGNATED_INITIALIZER;
-@end
+/// Network connection lost
+  StreamStateChangedReasonNETWORK_ERROR = 2,
+
+/// Stream started from another device
+  StreamStateChangedReasonSTARTED_ON_OTHER_DEVICE = 3,
+};
 
 
 /// Stream state
